@@ -1,0 +1,170 @@
+@charset "utf-8";
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+body{
+    background: rgb(255, 255, 255);
+    overflow-x: hidden;
+    color: rgb(255, 255, 255);
+    font-family: monospace;   
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+/* 所有的自言自語 */
+.title {
+    height: 18vw; /*can be anything*/
+    width: 160vh; /*can be anything*/
+    /* text-align: center; */
+    animation: fadein 1.5s;
+  }
+  
+.titleooo {
+    filter: invert(100%);  
+    max-height: 100%;   
+    max-width: 100%;
+    
+    scale: 50%; 
+    /* min-width: 100%;
+    max-width: 100%;  */ 
+    width: auto; 
+    height: auto; 
+    position: absolute;  
+    top: 3%;     
+    text-align: center;
+  
+}
+
+.menu{
+    max-height: 100%;
+    max-width: 100%;
+    scale:100%;
+    color:black;
+    font-size: 2vw;
+    padding: 1vw;
+	display: inline-block;
+    text-align: center;
+    margin-left: 12.3vw; 
+    /* fade */
+    opacity: 0; 
+    animation: fadein 1s;
+    animation-delay: 0.7s; 
+    animation-fill-mode: forwards;
+    
+}
+
+.photo {
+    max-height: 100%;   
+    max-width: 100%;
+    min-height: 90%;   
+    min-width: 90%;
+    scale: 90%; 
+    width: auto; 
+    height: auto; 
+    position: relative;
+    text-align: center;
+    padding-top: 2vh;
+    /* fade */
+    opacity: 0; 
+    animation: fadein 1s;
+    animation-delay: 1.3s; 
+    animation-fill-mode: forwards;
+}
+
+
+
+
+a:link{
+    color:black;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+a:visited{
+    color:black;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------RWD----------------*/
+
+@media screen and (max-width: 1000px){
+    @media screen and (max-width: 1000px){
+        .titleooo {
+            filter: invert(100%);  
+            max-height: 100%;   
+            max-width: 100%;
+            
+            scale: 70%; 
+            /* min-width: 100%;
+            max-width: 100%;  */ 
+            width: auto; 
+            height: auto; 
+            position: absolute;  
+            top: 3%;     
+            text-align: center;
+          
+        }
+      }
+
+      .menu{
+        max-height: 100%;
+        max-width: 100%;
+        scale:100%;
+        width:5vw;
+        color:black;
+        font-size: 2vw;
+        padding: 0vw;
+        display: inline-block;
+        text-align: center;
+        margin-left: 14vw; 
+        /* fade */
+        
+    }
+
+    .photo {
+        max-height: 100%;   
+        max-width: 100%;
+        min-height: 90%;   
+        min-width: 90%;
+        scale: 90%; 
+        width: auto; 
+        height: auto; 
+        position: relative;
+        text-align: center;
+        padding-top: 2vh;
+        /* fade */
+        opacity: 0; 
+        animation: fadein 1s;
+        animation-delay: 1.3s; 
+        animation-fill-mode: forwards;
+    }
+    
+
+  
+
+    
+}
