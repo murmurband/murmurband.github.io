@@ -21,7 +21,7 @@ body{
     /* transition: opacity 0.5s; */
 }
 
-.banner{
+.inlinevideo{
     width: 100%;
     height: 100vh;
     position: relative;
@@ -31,7 +31,7 @@ body{
     align-items:center;
 }
 
-.banner video{
+.inlinevideo video{
    position: fixed;
    width: 100%;
    height: 100%;
