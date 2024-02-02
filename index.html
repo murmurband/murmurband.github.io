@@ -13,6 +13,11 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/addons/p5.sound.min.js"></script>
 
 <script type="text/javascript" src="js/sketch.js"></script>
+<script>
+  //PLAYS VIDEO IN LOW POWER MODE
+  // $('ocean-back').addClass('banner');
+  $('body').on('click touchstart', function ()  {var videoElement = document.getElementsByClassName('banner');if (videoElement.playing) {} else {$('.banner').trigger('play');}});
+</script>
 <!-- <script type="text/javascript" src="js/stars.js"></script> -->
 
 </head>
@@ -46,11 +51,7 @@
                 <source src="ocean-back.mp4" type="video/mp4"> 
               </video>
 
-              <script>
-                //PLAYS VIDEO IN LOW POWER MODE
-                // $('ocean-back').addClass('banner');
-                $('body').on('click touchstart', function ()  {var videoElement = document.getElementsByClassName('banner');if (videoElement.playing) {} else {$('.banner').trigger('play');}});
-                </script>
+             
              
               
             </div>
