@@ -70,3 +70,41 @@ img {
   z-index: 2;
 }
 
+.bg{
+  display: none;
+}
+
+
+
+
+@media screen and (max-width: 1000px){
+  @media screen and (max-width: 1000px){
+    .inlinevideo{
+      display: none;
+    } 
+    
+    .bg{
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items:center;
+  }
+  
+  .bg img{
+      display: initial;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      scale: 100%;
+      top:0;
+      left:0;
+      object-fit: cover;
+      z-index:1; 
+      animation: fadein 1.5s;
+      animation-fill-mode: forwards;
+   }
+  }
+}
