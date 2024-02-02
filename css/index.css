@@ -105,6 +105,7 @@ img {
       z-index:1; 
       animation: fadein 1.5s;
       animation-fill-mode: forwards;
+      /* new test 0202 */
    }
   }
 }
