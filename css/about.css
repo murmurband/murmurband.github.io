@@ -1,0 +1,214 @@
+@charset "utf-8";
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+html,body{
+    background: rgb(255, 255, 255);
+    overflow-x: hidden;
+    color: rgb(255, 255, 255);
+    font-family: monospace;   
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+/* 所有的自言自語 */
+.title {
+    height: 18vw; /*can be anything*/
+    width: 160vh; /*can be anything*/
+    /* text-align: center; */
+    
+  }
+  
+.titleooo {
+    filter: invert(100%);  
+    max-height: 100%;   
+    max-width: 100%;
+    
+    scale: 50%; 
+    /* min-width: 100%;
+    max-width: 100%;  */ 
+    width: auto; 
+    height: auto; 
+    position: absolute;  
+    top: 3%;     
+    text-align: center;
+  
+}
+
+.menu{
+    max-height: 100%;
+    max-width: 100%;
+    background-color: aqua;
+    color:black;
+    font-size: 2vw;
+    padding: 1vw;
+	display: inline-block;
+    text-align: center;
+    margin-left: 12.3vw; 
+    /* fade */
+    
+}
+
+.photo {
+    max-height: 100%;   
+    max-width: 100%;
+    min-height: 30%;   
+    min-width: 30%; 
+    width: 40%; 
+    height: 40%; 
+    /* fade */
+    animation: fadein 1.5s;
+    position: relative;
+    padding-top: 10vh;
+    padding-left: 8vw;
+}
+
+
+.st_text{
+    color:rgb(120, 120, 120);
+    display: inline-block;
+    position: absolute;
+    margin-top: 10vh;
+    margin-left: 10vw;
+    width: 30vw;
+    height: 10vh;
+    max-height: 10vh;
+    max-width: 30vw;
+    min-width: none;
+    font-size:2.5vh;
+    line-height: 5vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------- Link--------------- */
+a:link{
+    color:black;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+
+a:visited{
+    color:black;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------RWD----------------*/
+
+
+
+@media screen and (max-width: 1000px){
+    @media screen and (max-width: 1000px){
+        
+        html, body{
+            background: rgb(255, 255, 255);
+            color: rgb(255, 255, 255);
+            font-family: monospace; 
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            height: 100%;  
+            overflow-x:hidden;
+        }
+        
+        body{
+            position: relative;
+        }    
+        
+        .titleooo {
+            filter: invert(100%);  
+            max-height: 100%;   
+            max-width: 100%;
+            
+            scale: 70%; 
+            /* min-width: 100%;
+            max-width: 100%;  */ 
+            width: auto; 
+            height: auto; 
+            position: absolute;  
+            top: 3%;     
+            text-align: center;
+          
+        }
+      }
+
+      .menu{
+        max-height: 100%;
+        max-width: 100%;
+        scale:100%;
+        width:5vw;
+        color:black;
+        font-size: 2vw;
+        padding: 0vw;
+        display: inline-block;
+        text-align: center;
+        margin-left: 14vw; 
+        /* fade */
+        
+    }
+
+    .photo {
+        max-height: 100%;   
+        max-width: 100%;
+        min-height: 30%;   
+        min-width: 30%; 
+        width: 40%; 
+        height: 40%; 
+        /* fade */
+        animation: fadein 1.5s;
+        position: relative;
+        padding-top: 3vh;
+        padding-left: 8vw;
+    }
+    
+    .st_text{
+        color:rgb(120, 120, 120);
+        display: inline-block;
+        position: absolute;
+        margin-top: 3vh;
+        margin-left: 10vw;
+        width: 30vw;
+        height: 10vh;
+        max-height: 10vh;
+        max-width: 30vw;
+        min-width: none;
+        font-size:1vh;
+        line-height: 2vh;
+    }
+  
+
+    
+}
