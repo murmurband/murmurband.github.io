@@ -21,7 +21,7 @@ body::-webkit-scrollbar{
     width: 160vh; /*can be anything*/
     /* text-align: center; */
     
-  }
+}
   
 .titleooo {
     filter: invert(100%);  
@@ -82,16 +82,6 @@ body::-webkit-scrollbar{
     font-size:2.5vh;
     line-height: 5vh;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /*--------------- Link--------------- */
