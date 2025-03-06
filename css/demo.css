@@ -45,14 +45,15 @@ body::-webkit-scrollbar{
     width: 80vw;
     color:black;
     font-size: 2vw;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10vh;
+
     /* fade */
     opacity: 0; 
     animation: fadein 1s;
     animation-delay: 0.7s; 
     animation-fill-mode: forwards;
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 10vh;
 }
 
 .photo{
