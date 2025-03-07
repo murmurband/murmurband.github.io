@@ -1,17 +1,100 @@
-window.addEventListener('scroll', () => {
-    const verticalScrollPx = window.scrollY || window.pageYOffset;
-  
-    if (verticalScrollPx < 500) {
-        document.getElementById("background").style.backgroundImage = "url('background.png')";
-        
-    } else if (verticalScrollPx > 500 && verticalScrollPx < 1000) {
-        document.getElementById("background").style.backgroundImage = "url('sandman1.png')";
-    } else if (verticalScrollPx > 1000 && verticalScrollPx < 1500) {
-        document.getElementById("background").style.backgroundImage = "url('sandman2.png')";
-    } else if (verticalScrollPx > 1500 && verticalScrollPx < 2000) {
-        document.getElementById("background").style.backgroundImage = "url('sandman3.png')";
-    } else if (verticalScrollPx > 2000 && verticalScrollPx < 2500) {
-        document.getElementById("background").style.backgroundImage = "url('sandman4.png')";
+let sentences = [
+  "所有的自言自語構築了我們。",
+  "那就遠走吧！",
+  "你的花火之中世界便開始閃爍。",
+  "請不要再說加油...",
+  "世界再大也攔不住你的輕狂。",
+]; // 多個中文句子
+
+let currentSentence = ""; // 當前顯示的句子
+let previousSentence = ""; // 上一個顯示的句子
+let textDisplay = ""; // 當前顯示的文字
+let index = 0; // 當前顯示的字符索引
+let deleting = false; // 是否正在刪除
+let typing = true; // 是否正在打字
+let deletionCompleted = false; // 是否已經完成刪除
+let delayTime = 1000; // 停頓時間 0.5 秒
+
+function preload() {
+    // 加載本地字體文件，將 'path/to/font.ttf' 替換為字體文件的實際路徑
+    customFont = loadFont('js/wc.ttf');
+  }
+
+function setup() {
+  let canvas = createCanvas(windowWidth, windowHeight);
+  canvas.parent("canvas-container");
+  textFont(customFont); // 設置自定義字體
+  textSize(25);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  textStyle(BOLDITALIC);
+  fill(255);
+
+  // 隨機選擇一個句子並確保不與上一個句子相同
+  currentSentence = getRandomSentence();
+}
+
+function draw() {
+  clear();
+  let scaleFactor = min(width / 400, height /400);
+  scale(scaleFactor); // 根據畫布尺寸縮放內容
+
+
+  // 顯示當前的文字
+  text(textDisplay, width / 2 / scaleFactor, height / 2 / scaleFactor);
+
+  // 打字效果
+  if (typing) {
+    if (frameCount % 5 == 0 && index < currentSentence.length) {
+      index++; // 每5幀顯示一個新的字符
+      textDisplay = currentSentence.substring(0, index);
     }
-    
-  });
+
+    // 完成打字後，延遲 0.5 秒後開始刪除
+    if (index === currentSentence.length) {
+      typing = false;
+      setTimeout(() => {
+        deleting = true; // 開始刪除
+      }, delayTime); // 延遲0.5秒
+    }
+  }
+
+  // 刪除效果
+  if (deleting) {
+    if (frameCount % 5 == 0 && index > 0) {
+      index--; // 每5幀刪除一個字符
+      textDisplay = currentSentence.substring(0, index);
+    }
+
+    // 完成刪除後，延遲 0.5 秒再打新句子
+    if (index === 0) {
+      deleting = false;
+      setTimeout(() => {
+        deletionCompleted = true; // 標記刪除完成
+      }, delayTime); // 延遲0.5秒
+    }
+  }
+
+  // 切換到新句子，並重新開始打字過程
+  if (deletionCompleted) {
+    currentSentence = getRandomSentence(); // 隨機選擇一個新句子，並確保不重複
+    index = 0; // 重置索引
+    typing = true; // 開始打新句子
+    deletionCompleted = false; // 重置刪除完成狀態
+  }
+}
+
+// 隨機選擇句子並確保不重複
+function getRandomSentence() {
+  let newSentence;
+  do {
+    newSentence = random(sentences); // 隨機選擇一個句子
+  } while (newSentence === previousSentence); // 確保不選擇與上次相同的句子
+
+  previousSentence = newSentence; // 更新上一個句子
+  return newSentence;
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
