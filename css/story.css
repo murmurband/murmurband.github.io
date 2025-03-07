@@ -13,6 +13,87 @@ body{
     align-items: center;
     flex-direction: column;
 }
+
+header{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+
+    /* fade */
+    opacity: 0; 
+    animation: fadein 1s;
+    animation-delay: 0.5s; 
+    animation-fill-mode: forwards;
+}
+
+.menu-box{
+    color: white;
+    width: 15vw; /* 設置寬度為視窗寬度的 50% */
+    aspect-ratio: 1; /* 保持正方形比例 */
+    background-color: rgb(137, 193, 220);
+    text-align: center;
+    font-size: 5vw;
+    font-weight: 100;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+
+.menu-close{
+    background-color: rgb(137, 193, 220);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: -10000px;
+    transition: left 1s ease;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10%;
+    line-height: 200%;
+    font-size: 8vw;
+    padding-top: 10vh;
+    letter-spacing: 3dvw;
+    font-weight: 300;
+
+}
+
+.menu-open{
+    background-color: rgb(137, 193, 220);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left:0px;
+    transition: left 0.3s ease;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10%;
+    line-height: 200%;
+    font-size: 8vw;
+    padding-top: 10vh;
+    letter-spacing: 3dvw;
+    font-weight: 300;
+
+
+}
+
+.menu-open a, .menu-close a{
+    color: white;
+    text-decoration: none;
+}
+
+.menu-open a:hover, .menu-close a:hover{
+    text-decoration: underline white;
+}
+
 .bg {
     overflow: hidden;
     width: 100vw;
@@ -27,8 +108,9 @@ body{
      animation: fadein 1s; 
      animation-fill-mode: forwards;
 }
+
 .bg img{
-    
+
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -37,37 +119,36 @@ body{
 }
 
 .title{
-    margin: 10%;
+    display: flex;
+    justify-content: center;
     height: auto;
     width: 80vw;
-
-     /* fade */
-     opacity: 0; 
-     animation: fadein 1s;
-     animation-delay: 0.5s; 
-     animation-fill-mode: forwards;
-    
-
 }
 
 .titleimg{
+
+    margin-left: 5%;
+    filter: invert(100%);
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
 .st_text{
-    height: 100vh;
+    background-color: rgb(255,255,255,0.9);
+    margin-top: 10%;
+    height: auto;
     width: 80vw;
     animation: fadein 1.5s;
-    color: white;
+    color: rgb(99, 99, 99);
     font-size: 3vw;
     text-align: center;
     line-height: 200%;
+    padding: 5vh 0;
 
      /* fade */
      opacity: 0; 
      animation: fadein 1s;
-     animation-delay: 1.5s; 
+     animation-delay: 1.2s; 
      animation-fill-mode: forwards;
 }
