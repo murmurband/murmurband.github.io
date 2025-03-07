@@ -50,7 +50,7 @@ header{
     height: 100vh;
     position: absolute;
     left: -10000px;
-    transition: left 1s ease;
+    transition: left 1.5s ease;
     z-index: 2;
 
     display: flex;
@@ -71,7 +71,7 @@ header{
     height: 100vh;
     position: absolute;
     left:0px;
-    transition: left 0.3s ease;
+    transition: left 1.5s ease;
     z-index: 2;
 
     display: flex;
