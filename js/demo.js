@@ -16,7 +16,7 @@ let deletionCompleted = false; // 是否已經完成刪除
 let delayTime = 1000; // 停頓時間 0.5 秒
 let yPos = 0; // 垂直方向上顯示的起始位置
 let totalTextHeight = 0; // 用來計算總高度
-let lineHeight = 30; // 每個字母間的垂直間距
+let lineHeight = 27; // 每個字母間的垂直間距
 
 
 function preload() {
@@ -29,7 +29,7 @@ function setup() {
   canvas.parent("canvas-container");
 //   textFont(customFont); // 設置自定義字體
   textFont('Shippori Mincho');
-  textSize(20);
+  textSize(17);
   textAlign(LEFT, TOP);
 //   textStyle(LIGHT);
   fill(255);
