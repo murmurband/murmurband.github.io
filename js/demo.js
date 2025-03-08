@@ -2,7 +2,7 @@ let sentences = [
   "所有的自言自語構築了我們。",
   "那就遠走吧！",
   "你的花火之中世界便開始閃爍。",
-  "請不要再說加油...",
+  "請不要再說加油。",
   "世界再大也攔不住你的輕狂。",
 ]; // 多個中文句子
 
@@ -14,6 +14,10 @@ let deleting = false; // 是否正在刪除
 let typing = true; // 是否正在打字
 let deletionCompleted = false; // 是否已經完成刪除
 let delayTime = 1000; // 停頓時間 0.5 秒
+let yPos = 50; // 垂直方向上顯示的起始位置
+let totalTextHeight = 0; // 用來計算總高度
+let lineHeight = 30; // 每個字母間的垂直間距
+
 
 function preload() {
     // 加載本地字體文件，將 'path/to/font.ttf' 替換為字體文件的實際路徑
@@ -25,24 +29,27 @@ function setup() {
   canvas.parent("canvas-container");
   textFont(customFont); // 設置自定義字體
   textSize(25);
-  textAlign(CENTER, CENTER);
+  textAlign(LEFT, TOP);
   textStyle(BOLD);
   textStyle(BOLDITALIC);
   fill(255);
 
   // 隨機選擇一個句子並確保不與上一個句子相同
   currentSentence = getRandomSentence();
+  totalTextHeight = currentSentence.length * lineHeight;
 }
 
 function draw() {
   clear();
-  let scaleFactor = min(width / 400, height /400);
+  let scaleFactor = min(width / 600, height/600);
+  
   scale(scaleFactor); // 根據畫布尺寸縮放內容
 
+  let yPos = (height - totalTextHeight) / 2;
 
-  // 顯示當前的文字
-  text(textDisplay, width / 2 / scaleFactor, height / 2 / scaleFactor);
-
+  for (let i = 0; i < index; i++) {
+    text(currentSentence.charAt(i), width / scaleFactor / 3 - 100, (yPos - 50 + i * lineHeight)  ); // 每個字符向下排列，yPos 控制起始位置
+  }
   // 打字效果
   if (typing) {
     if (frameCount % 5 == 0 && index < currentSentence.length) {

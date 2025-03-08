@@ -22,10 +22,11 @@ body {
 header {
   display: flex;
   flex-direction: row;
-  justify-content: end;
   width: 100vw;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
+  background-color: white;
 
   /* fade */
   opacity: 0;
@@ -52,8 +53,8 @@ header {
   width: 100vw;
   height: 100vh;
   position: absolute;
-  left: -10000px;
-  transition: left 1.5s ease;
+  left: -800px;
+  transition: left 0.5s ease;
   z-index: 2;
 
   display: flex;
@@ -73,7 +74,7 @@ header {
   height: 100vh;
   position: absolute;
   left: 0px;
-  transition: left 1.5s ease;
+  transition: left 0.5s ease;
   z-index: 2;
 
   display: flex;
@@ -118,7 +119,7 @@ header {
   width: 100%;
   height: 100%;
   position: relative;
-  filter: blur(2px);
+  filter: blur(0.5px);
 }
 
 .title {
