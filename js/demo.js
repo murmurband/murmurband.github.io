@@ -1,10 +1,39 @@
 let sentences = [
   "所有的自言自語構築了我們。",
+  //遠走
   "那就遠走吧。",
-  "你的花火之中世界便開始閃爍。",
-  "請不要再說加油。",
   "世界再大也攔不住你的輕狂。",
-]; // 多個中文句子
+  "多麽徬徨就看作是一個笑話。",
+  "有我在等你回來。",
+  //給你的光
+  "但我早在你心裡面。",
+  "倔強不被夜色淹滅。",
+  "這次你就只管往前。",
+  "我想我還沒辦法說再見。",
+  "今後你就只管閃爍黑夜。",
+  //Luna
+  "你的花火之中世界便開始閃爍。",
+  "奮不顧身為我保留。",
+  "你的眼眸之中時間便從此永久。",
+  "我會陪在你的身後。",
+  "擁有你哪怕如果。",
+  
+  //宇宙裡的星點
+  "昨天的夢裡有沒有未來。",
+  "我多想知道你的一切。",
+  "太多複雜與簡單在你眼底打轉。",
+  "發現你努力忽明忽暗。",
+  "一閃而過也算完美。",
+  "別急著說再見。",
+  "你是星點在宇宙絢爛。",
+  //我好想你
+  "請不要再說加油。",
+  "要多少努力才能夠再遇見你。",
+  "我已經很努力。",
+  //共生
+  //輾轉
+  
+];
 
 let currentSentence = ""; // 當前顯示的句子
 let previousSentence = ""; // 上一個顯示的句子
@@ -13,10 +42,10 @@ let index = 0; // 當前顯示的字符索引
 let deleting = false; // 是否正在刪除
 let typing = true; // 是否正在打字
 let deletionCompleted = false; // 是否已經完成刪除
-let delayTime = 1000; // 停頓時間 0.5 秒
+let delayTime = 1200; // 停頓時間 x 秒
 let yPos = 0; // 垂直方向上顯示的起始位置
 let totalTextHeight = 0; // 用來計算總高度
-let lineHeight = 27; // 每個字母間的垂直間距
+let lineHeight = 23; // 每個字母間的垂直間距
 
 
 function preload() {
@@ -28,7 +57,7 @@ function setup() {
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("canvas-container");
 //   textFont(customFont); // 設置自定義字體
-  textFont('Shippori Mincho');
+  textFont('Shippori Mincho', 'Serif');
   textSize(17);
   textAlign(LEFT, TOP);
 //   textStyle(LIGHT);

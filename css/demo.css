@@ -119,7 +119,7 @@ header {
   width: 100%;
   height: 100%;
   position: relative;
-  filter: blur(0.5px);
+  filter: blur(0.6px);
 }
 
 .title {
