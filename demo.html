@@ -8,8 +8,10 @@
     <link href="css/demo.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Syncopate:700&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  
+    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/addons/p5.sound.min.js"></script>
-    <!-- <script type="text/javascript" src="js/demo.js"></script> -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/demo.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
@@ -21,35 +23,38 @@
 <body>
 
     <header>
-        <div class="title" >
-            <img class="titleimg" src="allmurmur.png"> 
+        <div class="wrapper">
+            <div class="title" >
+                <img class="titleimg" src="allmurmur.png"> 
+            </div>
+            <div class="menu-box" onclick="myFunction()">M E<br>N U</div>
         </div>
-        <div class="menu-box" onclick="myFunction()">M E <br>N U</div>
+        <div>
+            <div id="menu" class="menu-close">
+                <a href="demo.html">home</a>
+                <a href="story.html">story</a>
+                <a href="works.html">works</a>
+                <a href="concert.html">concert</a>
+                <a href="about.html">about</a>
+            </div>
+        </div>
     </header>
     
-    <div>
-        <div id="menu" class="menu-close">
-            <a href="demo.html">home</a>
-            <a href="story.html">story</a>
-            <a href="works.html">works</a>
-            <a href="concert.html">concert</a>
-            <a href="about.html">about</a>
-        </div>
-    </div>
+    
 
     
     
     <div class="bg">
         <picture>
-            <source media="(min-width: 769px)" srcset="./3.jpg">
+            <source media="(min-width: 769px)" srcset="./tainansea1.jpg">
             <source media="(min-width: 768px)" srcset="./tainansea">
             <img src="./tainansea.jpg"/>
         </picture>
     </div>
-  <div id="canvas-container">
-    <!-- 可以放入其他內容，例如文本 -->
-    <div class="custom-text"></div>
-  </div>
+
+    <div id="canvas-container"></div>
+
+
 
   
 </body>

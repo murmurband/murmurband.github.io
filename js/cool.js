@@ -54,8 +54,8 @@ function preload() {
   }
 
 function setup() {
-  let canvas = createCanvas(windowWidth, windowHeight);
-  canvas.parent("canvas-container");
+  let canvas = createCanvas(600,600);
+  canvas.parent("canvas-container-a");
 //   textFont(customFont); // 設置自定義字體
   textFont('Shippori Mincho', 'Serif');
   textSize(17);
@@ -70,7 +70,6 @@ function setup() {
 }
 
 function draw() {
-if(windowWidth < 700){
   clear();
   let scaleFactor = min(width / 300, height/ 300);
   
@@ -120,60 +119,6 @@ if(windowWidth < 700){
     typing = true; // 開始打新句子
     deletionCompleted = false; // 重置刪除完成狀態
   }
-}
-
-else{
-    
-        clear();
-        textAlign(CENTER, CENTER);
-        let scaleFactor = min(width / 300, height/ 300);
-        
-        scale(scaleFactor); // 根據畫布尺寸縮放內容
-      
-      
-        text(textDisplay, width / 2 / scaleFactor, height / 2 /scaleFactor - 100);
-  
-        // 打字效果
-        if (typing) {
-          if (frameCount % 5 == 0 && index < currentSentence.length) {
-            index++; // 每5幀顯示一個新的字符
-            textDisplay = currentSentence.substring(0, index);
-          }
-      
-          // 完成打字後，延遲 0.5 秒後開始刪除
-          if (index === currentSentence.length) {
-            typing = false;
-            setTimeout(() => {
-              deleting = true; // 開始刪除
-            }, delayTime); // 延遲0.5秒
-          }
-        }
-      
-        // 刪除效果
-        if (deleting) {
-          if (frameCount % 5 == 0 && index > 0) {
-            index--; // 每5幀刪除一個字符
-            textDisplay = currentSentence.substring(0, index);
-          }
-      
-          // 完成刪除後，延遲 0.5 秒再打新句子
-          if (index === 0) {
-            deleting = false;
-            setTimeout(() => {
-              deletionCompleted = true; // 標記刪除完成
-            }, delayTime); // 延遲0.5秒
-          }
-        }
-      
-        // 切換到新句子，並重新開始打字過程
-        if (deletionCompleted) {
-          currentSentence = getRandomSentence(); // 隨機選擇一個新句子，並確保不重複
-          index = 0; // 重置索引
-          typing = true; // 開始打新句子
-          deletionCompleted = false; // 重置刪除完成狀態
-        }
-      }
-
 }
 
 // 隨機選擇句子並確保不重複
