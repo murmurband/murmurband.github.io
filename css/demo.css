@@ -9,6 +9,10 @@
 }
 
 body {
+  /* size */
+  width: 100vw;
+  height: 100vh;  
+
   /* pos */
   margin: 0;
   padding: 0;
@@ -84,7 +88,7 @@ header {
   align-items: center;
   
   /* text */
-  font-size: 1.2vw;
+  font-size: 1.2vmax;
   font-family: sans-serif;
   color: white;
   text-align: center;
@@ -148,7 +152,7 @@ header {
   
   /* text */
   line-height: 200%;
-  font-size: 1.8vw;
+  font-size: 1.8vmax;
   letter-spacing: 1dvw;
 
   /* effect */
@@ -216,7 +220,7 @@ header {
   height: 100%;
   object-fit: contain;
   /* pos */
-  margin-left: 1%;
+  margin-left: 3%;
   /* effect */
   filter: invert(100%);
   
@@ -225,10 +229,41 @@ header {
 
 #canvas-container{
   /* pos */
+  padding-top: 10vh;
   padding-left: 5vw;
 }
 
+footer {
+  /* size */
+  width: 14vmax;
+  height: 10vmin;
+  /* pos */
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  gap: 5px;
+  background-color: white;
+  /* type */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* fade */
+   /* fade */
+   opacity: 0;
+   animation: fadein 1s;
+   animation-delay: 0.5s;
+   animation-fill-mode: forwards; 
+}
 
+footer img{
+  /* size */
+  width: 3vmin;
+  height: 3vmin;
+  object-fit: cover;
+  /* effect */
+  filter: grayscale(100%);
+}
 
 
 @media screen and (max-width: 700px){
@@ -244,17 +279,17 @@ header {
   .wrapper{
     /* size */
     width: 100vw;
-    height: 10vh;
+    height: 8vh;
     background-color: white;
   }
   
   .menu-box {
     /* size */
-    width: 10vh;
-    height: 10vh; 
+    width: 8vh;
+    height: 8vh; 
 
     /* text */
-    font-size: 4vw;
+    font-size: 4vmin;
 
     /* effect */
     border: none;
@@ -279,7 +314,7 @@ header {
     left:0;
     padding-left: 10vw;
     /* text */
-    font-size: 8vw;
+    font-size: 8vmin;
     font-weight: 300;
     /* effect */
     border: none;
@@ -292,13 +327,13 @@ header {
 
   .title {
     /* size */
-    height: 10vh;
+    height: 8vh;
     /* type */
     display: flex;
     justify-content: center;
   }
   
   #canvas-container{
-    padding-top: 20vh;
+    padding-top: 40vh;
   }
 }
