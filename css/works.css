@@ -286,6 +286,7 @@ header {
   gap: 10px;
   padding-right: 2vw;
   flex-wrap: wrap;
+  
 }
 
 .works-photo{
@@ -295,6 +296,7 @@ header {
   /* pos */
   /* type */
   position: relative;
+  text-decoration: none;
 }
 
 .works-photo img{
@@ -508,7 +510,7 @@ footer {
   }
 
   .works-name{
-    max-width: 150px;
+    max-width: 200px;
     height: auto;
     position:relative;
     overflow: visible;
@@ -527,7 +529,7 @@ footer {
   
   .text1{
     font-family: 'TP-L';
-    font-size: 13px;
+    font-size: 15px;
     color: black;
     line-height: 150%;
     font-weight: 300;
