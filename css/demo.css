@@ -113,6 +113,7 @@ header {
   width: 0px;
   height: 100vh;
   background-color: rgb(137, 193, 220);
+  /* background-color: white; */
   
   /* pos */
   position: absolute;

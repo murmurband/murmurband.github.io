@@ -42,7 +42,7 @@ body::-webkit-scrollbar{
 .menu{
     max-height: 100%;
     max-width: 100%;
-    background-color: aqua;
+    background-color: white;
     color:black;
     font-size: 2vw;
     padding: 1vw;
