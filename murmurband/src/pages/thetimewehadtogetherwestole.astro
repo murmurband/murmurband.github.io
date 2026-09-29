@@ -1,9 +1,11 @@
 ---
 import OceanLayout from "../layouts/OceanLayout.astro";
 import releases from "../data/releases.json";
-const release = releases.find((item) => item.slug === "far-away")!;
+const release = releases.find(
+  (item) => item.slug === "thetimewehadtogetherwestole"
+)!;
 const songUrl =
-  "https://packer-sys.streetvoice.com/zh-hant/packerlink/TqsLAAxufb/";
+  "https://packer-sys.streetvoice.com/zh-hant/packerlink/kMu7jZp74k/";
 ---
 
 <OceanLayout title={release.title + " · Murmur"}>
@@ -32,8 +34,8 @@ const songUrl =
       <p class="eyebrow">{release.date}</p>
       <div class="st_composer">作詞・作曲：施柏年</div>
       <div class="st_artist">
-        編曲 Arranger｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
-        <br />主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+        編曲 Arranger｜施柏年 Marcus Shih
+        <br />主唱 Vocalist｜盧瑞珍 Jane Lu
         <br />木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
         <br />
         <br />
@@ -44,23 +46,22 @@ const songUrl =
         <h1><a class="st_title" href={songUrl}>{release.title}</a></h1>
 
         <div class="st_text">
-          嘿 還睡不著嗎
-          <br />怎麼又開始迷惘的眼神裡隱藏多少渴望
-          <br />嘿 那就別睡啊
-          <br />打包行李去闖那些想受卻不敢受的傷
+          嘿 你還記得我嗎
+          <br />想退縮 卻害怕你忘記我啊
+          <br />嘿 不要一個人逞強
+          <br />我多想了解你的悲傷
           <br />
-          <br />這次不用再害怕
+          <br />你看 光陰消逝中相遇的你和我
+          <br />荒謬又單純的走
+          <br />小心翼翼怕弄錯
+          <br />但我有一百個故事想跟你說
+          <br />你說 我是不是太囉嗦
           <br />
-          <br />那就遠走吧
-          <br />世界再大也攔不住你的輕狂
-          <br />讓誰淚如雨下的情話
-          <br />沖散了你的去向
-          <br />
-          <br />那就啟程吧
-          <br />多麼徬徨就看作是一個笑話
-          <br />去到我去不了的地方
-          <br />有我在等你回來
-          <br />就走吧
+          <br />你看 沒有理由的並肩走了很久
+          <br />如果我都不開口
+          <br />會不會就要錯過
+          <br />但我只想要能跟你到處走走
+          <br />你說 你想要什麼
           <br />
           <br />
         </div>

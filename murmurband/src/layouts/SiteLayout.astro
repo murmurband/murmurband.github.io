@@ -14,6 +14,17 @@ const { title = "自言自語Murmur", animation = false } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      // Decide before first paint; reloads and navigation between inner pages keep the logo visible.
+      try {
+        const previous = new URL(document.referrer);
+        const navigation = performance.getEntriesByType('navigation')[0];
+        if (navigation?.type === 'navigate' && previous.origin === location.origin &&
+            ['/', '/index.html', '/demo.html'].includes(previous.pathname)) {
+          document.documentElement.classList.add('from-home');
+        }
+      } catch { /* Direct visits have no referrer. */ }
+    </script>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 
     <link rel="shortcut icon" href="/favicon.ico" />

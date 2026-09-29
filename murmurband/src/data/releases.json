@@ -1,58 +1,79 @@
 [
   {
-    "slug": "star",
-    "image": "/star-work.png",
-    "english": "The Star In The Universe",
-    "title": "宇宙裡的星點",
+    "slug": "oceanandflower",
+    "image": "/oceanandflower.jpg",
+    "english": "Ocean and Flower",
+    "title": "海和花",
     "date": "2024.12.06"
   },
   {
-    "slug": "missu",
-    "image": "/missu.jpg",
-    "english": "I Miss U",
-    "title": "我好想你",
-    "date": "2024.03.31"
-  },
-  {
-    "slug": "coexistence",
-    "image": "/coexistence.png",
-    "english": "Coexistence",
-    "title": "共生",
-    "date": "2023.11.27"
-  },
-  {
-    "slug": "tossandturn",
-    "image": "/tossandturn.jpg",
-    "english": "Toss And Turn",
-    "title": "輾轉",
-    "date": "2023.08.27"
-  },
-  {
-    "slug": "light",
-    "image": "/light.jpg",
-    "english": "To Rachel",
-    "title": "給你的光",
-    "date": "2023.07.19"
+    "slug": "thetimewehadtogetherwestole",
+    "image": "/thetimewehadtogetherwestole.jpg",
+    "english": "The Time We Had Together We Stole",
+    "title": "偷來的時光(2.0)",
+    "date": "2025.09.14"
   },
   {
     "slug": "far-away",
     "image": "/far-away.jpg",
     "english": "Far Away",
     "title": "遠走",
+    "date": "2025.06.06"
+  },
+  {
+    "slug": "star",
+    "image": "/star-work.png",
+    "english": "The Star In The Universe (Demo)",
+    "title": "宇宙裡的星點 (Demo)",
+    "date": "2024.12.06"
+  },
+  {
+    "slug": "missu",
+    "image": "/missu.jpg",
+    "english": "I Miss U (Demo)",
+    "title": "我好想你 (Demo)",
+    "date": "2024.03.31"
+  },
+  {
+    "slug": "coexistence",
+    "image": "/coexistence.png",
+    "english": "Coexistence (Demo)",
+    "title": "共生 (Demo)",
+    "date": "2023.11.27"
+  },
+  {
+    "slug": "tossandturn",
+    "image": "/tossandturn.jpg",
+    "english": "Toss And Turn (Demo)",
+    "title": "輾轉 (Demo)",
+    "date": "2023.08.27"
+  },
+  {
+    "slug": "light",
+    "image": "/light.jpg",
+    "english": "To Rachel (Demo)",
+    "title": "給你的光 (Demo)",
+    "date": "2023.07.19"
+  },
+  {
+    "slug": "far-away-demo",
+    "image": "/far-away-demo.jpg",
+    "english": "Far Away (Demo)",
+    "title": "遠走 (Demo)",
     "date": "2023.06.04"
   },
   {
     "slug": "luna",
     "image": "/luna.png",
-    "english": "Luna",
-    "title": "Luna",
+    "english": "Luna (Demo)",
+    "title": "Luna (Demo)",
     "date": "2023.03.21"
   },
   {
     "slug": "letme",
     "image": "/讓我.jpg",
-    "english": "Let Me Embrace You",
-    "title": "讓我擁抱你所有的模樣",
+    "english": "Let Me Embrace You (Demo)",
+    "title": "讓我擁抱你所有的模樣 (Demo)",
     "date": "2022.10.28"
   }
 ]

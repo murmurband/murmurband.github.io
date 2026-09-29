@@ -10,7 +10,7 @@ import "../styles/home.css";
   <Fragment slot="head">
     <style is:inline>
       html.opening-pending .home-shell,
-      html.opening-active .home-shell { visibility: hidden; }
+      html.opening-active:not(.opening-complete) .home-shell { visibility: hidden; }
     </style>
     <script is:inline>
       (() => {
@@ -39,7 +39,6 @@ import "../styles/home.css";
     <script is:inline defer src="/js/home.js"></script>
   </Fragment>
   <div class="home-shell">
-    <a class="skip-link" href="#page-content">跳至主要內容</a>
     <SiteHeader home />
     <main id="page-content" tabindex="-1">
       <section class="home-hero" aria-labelledby="home-title">
@@ -76,4 +75,3 @@ import "../styles/home.css";
   </div>
   <HomeOpening />
 </SiteLayout>
-

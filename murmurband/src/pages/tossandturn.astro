@@ -2,13 +2,16 @@
 import OceanLayout from '../layouts/OceanLayout.astro';
 import releases from '../data/releases.json';
 const release = releases.find((item) => item.slug === "tossandturn")!;
+const songUrl = 'https://youtu.be/EJQTqC6V-Fo?si=iXjHkUhcrZPxNVqq';
 ---
 <OceanLayout title={release.title + ' · Murmur'}>
   <main id="page-content" tabindex="-1" class="lyrics-page">
     <aside class="record-panel">
       <a class="back-link" lang="en" href="/works.html">← All works</a>
-      <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
-      <p class="record-title">{release.title}</p>
+      <a class="record-cover-link" href={songUrl} aria-label={release.title + ' — 聆聽歌曲'}>
+        <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      </a>
+      <p class="record-title"><a href={songUrl}>{release.title}</a></p>
       {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
       <p class="eyebrow">{release.date}</p>
       <div class="st_composer">作詞：施柏年・作曲：施柏年／曾偌荃<br> Dedicate to Joey </div>
@@ -23,7 +26,7 @@ const release = releases.find((item) => item.slug === "tossandturn")!;
     </aside>
     <article class="lyrics-content">
 <div class = st> 
-        <h1><a class="st_title" href="https://youtu.be/EJQTqC6V-Fo?si=iXjHkUhcrZPxNVqq">輾轉</a></h1>   
+        <h1><a class="st_title" href={songUrl}>{release.title}</a></h1>   
            
         <div class="st_text">
             是什麼在不成眠的夜翻騰

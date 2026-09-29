@@ -2,13 +2,16 @@
 import OceanLayout from '../layouts/OceanLayout.astro';
 import releases from '../data/releases.json';
 const release = releases.find((item) => item.slug === "letme")!;
+const songUrl = 'https://streetvoice.com/murmurband_/songs/707009/';
 ---
 <OceanLayout title={release.title + ' · Murmur'}>
   <main id="page-content" tabindex="-1" class="lyrics-page">
     <aside class="record-panel">
       <a class="back-link" lang="en" href="/works.html">← All works</a>
-      <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
-      <p class="record-title">{release.title}</p>
+      <a class="record-cover-link" href={songUrl} aria-label={release.title + ' — 聆聽歌曲'}>
+        <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      </a>
+      <p class="record-title"><a href={songUrl}>{release.title}</a></p>
       {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
       <p class="eyebrow">{release.date}</p>
       <div class="st_composer">作詞・作曲：盧瑞珍／施柏年</div>
@@ -23,7 +26,7 @@ const release = releases.find((item) => item.slug === "letme")!;
     </aside>
     <article class="lyrics-content">
 <div class = st> 
-        <h1><a class="st_title" href="https://streetvoice.com/murmurband_/songs/707009/">讓我擁抱你所有的模樣</a></h1>   
+        <h1><a class="st_title" href={songUrl}>{release.title}</a></h1>   
            
         <div class="st_text">
             陽光灑落每片車窗

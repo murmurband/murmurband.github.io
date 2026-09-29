@@ -104,7 +104,8 @@
       p.fill(224, 233, 228, 220);
       p.textFont(sentenceFont);
       p.textStyle(p.NORMAL);
-      p.textSize(Math.min(w < 760 ? 16 : 21, (w * 0.82) / sentence.length));
+      const textSize = h <= 500 && w > h ? 13 : w < 760 ? 16 : 21;
+      p.textSize(Math.min(textSize, (w * 0.82) / sentence.length));
       p.textAlign(p.LEFT, p.CENTER);
       const fragment = sentence.slice(0, visible);
       // Center the visible glyphs, including punctuation, rather than the
@@ -115,7 +116,7 @@
       const left = bounds.actualBoundingBoxLeft ?? 0;
       const right = bounds.actualBoundingBoxRight ?? bounds.width;
       const textX = (w + left - right) / 2;
-      p.text(fragment, textX, h * (w < 760 ? 0.70 : 0.75));
+      p.text(fragment, textX, h * (h <= 500 ? 0.75 : w < 760 ? 0.70 : 0.75));
       p.pop();
       if (!paused) {
         time += .009;

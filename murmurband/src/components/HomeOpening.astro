@@ -3,8 +3,8 @@
     <source data-src="/ocean-back.mp4" type="video/mp4" />
   </video>
   <div class="opening-shade" aria-hidden="true"></div>
-  <img class="opening-logo" src="/Murmur-logo-text.png" alt="Murmur" />
-  <button class="opening-skip" type="button" lang="en">Skip intro <span aria-hidden="true">↗</span></button>
+  <img class="opening-logo" src="/Murmur-logo-text-hollow.png" alt="Murmur" />
+  <button class="opening-skip" type="button" lang="en">Skip intro</button>
 </div>
 
 <script is:inline>
@@ -12,24 +12,27 @@
     const opening = document.querySelector('.home-opening');
     const shell = document.querySelector('.home-shell');
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let seen = false;
-    try { seen = localStorage.getItem('murmur-opening-seen') === '1'; } catch {}
-    try { seen = seen || sessionStorage.getItem('murmur-opening-seen') === '1'; } catch {}
-    if (!opening || !shell || seen || motion.matches ||
-        !document.documentElement.classList.contains('opening-pending')) {
-      document.documentElement.classList.remove('opening-pending');
-      return;
-    }
-    // Remember immediately, including when the visitor skips or leaves early.
-    try { localStorage.setItem('murmur-opening-seen', '1'); } catch {}
-    try { sessionStorage.setItem('murmur-opening-seen', '1'); } catch {}
-
+    if (!opening || !shell) return;
+    const replay = document.querySelector('.opening-replay');
     const video = opening.querySelector('video');
     const source = video.querySelector('source');
     let timer;
+    let revealTimer;
+    let active = false;
+    const reveal = () => {
+      if (!active || opening.classList.contains('is-leaving')) return;
+      clearTimeout(revealTimer);
+      opening.classList.add('is-leaving');
+      document.documentElement.classList.add('opening-complete');
+      clearTimeout(timer);
+      timer = window.setTimeout(finish, motion.matches ? 0 : 1200);
+    };
     const finish = () => {
+      if (!active) return;
+      active = false;
       const restoreFocus = opening.contains(document.activeElement);
       clearTimeout(timer);
+      clearTimeout(revealTimer);
       video.pause();
       opening.hidden = true;
       shell.inert = false;
@@ -41,39 +44,61 @@
       if (restoreFocus) shell.querySelector('a, button')?.focus({ preventScroll: true });
     };
     const onKey = (event) => {
-      if (event.key === 'Escape') finish();
+      if (event.key === 'Escape') reveal();
       if (event.key === 'Tab') {
         event.preventDefault();
         opening.querySelector('button').focus();
       }
     };
 
-    shell.inert = true;
-    document.documentElement.classList.add('opening-active');
-    document.documentElement.classList.remove('opening-pending');
-    opening.hidden = false;
-    opening.querySelector('button').focus({ preventScroll: true });
-    video.muted = true;
-    source.src = source.dataset.src;
-    video.load();
-    video.play().catch(() => { /* Keep the plain ocean-colored backdrop if autoplay is unavailable. */ });
-    opening.querySelector('button').addEventListener('click', finish);
+    const start = () => {
+      if (active) return;
+      active = true;
+      try { localStorage.setItem('murmur-opening-seen', '1'); } catch {}
+      try { sessionStorage.setItem('murmur-opening-seen', '1'); } catch {}
+      document.documentElement.classList.remove('opening-complete');
+      opening.hidden = true;
+      opening.classList.remove('is-leaving');
+      // Commit the reset so every replay starts fresh CSS animations.
+      void shell.offsetWidth;
+      shell.inert = true;
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      document.documentElement.classList.add('opening-active');
+      document.documentElement.classList.remove('opening-pending');
+      opening.hidden = false;
+      opening.querySelector('button').focus({ preventScroll: true });
+      video.muted = true;
+      if (!source.src) {
+        source.src = source.dataset.src;
+        video.load();
+      }
+      video.currentTime = 0;
+      if (!motion.matches) video.play().catch(() => {});
+      document.addEventListener('keydown', onKey);
+      motion.addEventListener('change', finish);
+      window.addEventListener('pagehide', finish);
+      // Reveal the solid home logo underneath as the hollow opening fades away.
+      revealTimer = window.setTimeout(reveal, 3000);
+      timer = window.setTimeout(finish, 4300);
+    };
+    replay?.addEventListener('click', start);
+    opening.querySelector('button').addEventListener('click', reveal);
     opening.addEventListener('animationend', (event) => {
-      if (event.target === opening) finish();
+      if (event.target === opening && event.animationName === 'opening-reveal') finish();
     });
-    document.addEventListener('keydown', onKey);
-    motion.addEventListener('change', finish);
-    window.addEventListener('pagehide', finish);
-    // Always reveal the page, including when media cannot load.
-    timer = window.setTimeout(finish, 7600);
+    if (document.documentElement.classList.contains('opening-pending') && !motion.matches) {
+      start();
+    } else {
+      document.documentElement.classList.remove('opening-pending');
+    }
   })();
 </script>
 
 <style>
   :global(html.opening-active) { overflow: hidden; }
   :global(html.opening-pending .home-shell),
-  :global(html.opening-active .home-shell) { visibility: hidden; }
-  :global(html.opening-complete .home-shell) { animation: home-arrive 1.6s ease-in-out both; }
+  :global(html.opening-active:not(.opening-complete) .home-shell) { visibility: hidden; }
+  :global(html.opening-complete .home-shell) { visibility: visible; }
   .home-opening {
     position: fixed;
     inset: 0;
@@ -82,13 +107,13 @@
     place-items: center;
     isolation: isolate;
     background: #082634;
-    animation: opening-reveal 7.2s ease-in-out both;
   }
+  .home-opening.is-leaving { animation: opening-reveal 1.1s ease-in-out both; }
   .home-opening[hidden] { display: none; }
   .opening-ocean, .opening-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
   .opening-ocean { object-fit: cover; filter: saturate(.65) brightness(.7); z-index: -2; }
   .opening-shade { background: linear-gradient(180deg, #061b3540, #06283718 45%, #051c3866); z-index: -1; }
-  .opening-logo { width: min(580px, 78vw); height: auto; animation: opening-logo 1.4s .4s ease-in-out both; }
+  .opening-logo { position: absolute; left: 50%; top: 50svh; transform: translate(-50%, -50%); width: var(--home-logo-width); aspect-ratio: 1472 / 374; height: auto; animation: opening-logo .8s .2s ease-in-out both; }
   .opening-skip {
     position: absolute;
     right: max(6%, env(safe-area-inset-right));
@@ -99,25 +124,23 @@
     background: transparent;
     color: #e2edf3;
     font: 11px 'Shippori Mincho', serif;
-    letter-spacing: .18em;
+    letter-spacing: normal;
     cursor: pointer;
   }
-  .opening-skip span { margin-left: 12px; }
-  @keyframes home-arrive {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  .home-opening .opening-skip:focus-visible {
+    outline: none;
+    text-decoration: none;
   }
   @keyframes opening-logo {
     from { opacity: 0; }
     to { opacity: 1; }
   }
   @keyframes opening-reveal {
-    0%, 76% { opacity: 1; }
+    0% { opacity: 1; }
     100% { opacity: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .home-opening { display: none; animation: none; }
-    :global(html.opening-complete .home-shell) { animation: none; }
+    .home-opening { animation: none; }
     .opening-logo, .opening-ocean { animation: none; }
   }
 </style>

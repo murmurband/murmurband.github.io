@@ -2,13 +2,16 @@
 import OceanLayout from '../layouts/OceanLayout.astro';
 import releases from '../data/releases.json';
 const release = releases.find((item) => item.slug === "missu")!;
+const songUrl = 'https://youtu.be/FTL6Z4m6QRw?si=2A8X46pxonuPJ6-2';
 ---
 <OceanLayout title={release.title + ' · Murmur'}>
   <main id="page-content" tabindex="-1" class="lyrics-page">
     <aside class="record-panel">
       <a class="back-link" lang="en" href="/works.html">← All works</a>
-      <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
-      <p class="record-title">{release.title}</p>
+      <a class="record-cover-link" href={songUrl} aria-label={release.title + ' — 聆聽歌曲'}>
+        <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      </a>
+      <p class="record-title"><a href={songUrl}>{release.title}</a></p>
       {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
       <p class="eyebrow">{release.date}</p>
       <div class="st_composer">作詞・作曲：施柏年</div>
@@ -24,7 +27,7 @@ const release = releases.find((item) => item.slug === "missu")!;
     </aside>
     <article class="lyrics-content">
 <div class = st> 
-        <h1><a class="st_title" href="https://youtu.be/FTL6Z4m6QRw?si=2A8X46pxonuPJ6-2">我好想你</a></h1>   
+        <h1><a class="st_title" href={songUrl}>{release.title}</a></h1>   
            
         <div class="st_text">
             還記得你習慣一個人走

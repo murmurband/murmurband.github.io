@@ -1,8 +1,8 @@
 ---
 import OceanLayout from "../layouts/OceanLayout.astro";
 import releases from "../data/releases.json";
-const release = releases.find((item) => item.slug === "coexistence")!;
-const songUrl = "https://youtu.be/JuUPLjmybdU?si=tm8hT_MH8RX1nzEI";
+const release = releases.find((item) => item.slug === "far-away")!;
+const songUrl = "https://youtu.be/-8ApBER-_JI?si=Qo5TGBMbJf5xFmKD";
 ---
 
 <OceanLayout title={release.title + " · Murmur"}>
@@ -29,16 +29,11 @@ const songUrl = "https://youtu.be/JuUPLjmybdU?si=tm8hT_MH8RX1nzEI";
         )
       }
       <p class="eyebrow">{release.date}</p>
-      <div class="st_composer">作詞・作曲：盧瑞珍／施柏年</div>
+      <div class="st_composer">作詞・作曲：施柏年</div>
       <div class="st_artist">
         編曲 Arranger｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
         <br />主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
-        <br />合聲 Backing Vocalist｜盧瑞珍 Jane Lu
         <br />木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
-        <br />電吉他 Electric Guitarist｜施柏年 Marcus Shih
-        <br />貝斯 Bassist｜施柏年 Marcus Shih
-        <br />鼓組 Drummer｜李啟綸 Lawrence Lee from 300ss音樂劇場
-        <br />鍵盤 Keyboardist｜楊翊 Yang I
         <br />
         <br />
       </div>
@@ -48,27 +43,23 @@ const songUrl = "https://youtu.be/JuUPLjmybdU?si=tm8hT_MH8RX1nzEI";
         <h1><a class="st_title" href={songUrl}>{release.title}</a></h1>
 
         <div class="st_text">
-          你知道所有傷口都會留疤
-          <br />一片一片 剝落相同地方
-          <br />你知道「再試一次」其實都是謊話
-          <br />就假裝 沒意料
+          嘿 還睡不著嗎
+          <br />怎麼又開始迷惘的眼神裡隱藏多少渴望
+          <br />嘿 那就別睡啊
+          <br />打包行李去闖那些想受卻不敢受的傷
           <br />
-          <br />妥協 讓一切反覆上演
-          <br />癥結 你我間的重疊
-          <br />分不開的實偽 我不想再次和解
-          <br />你會 把屬於我的歸位
-          <br />我會 變成唯一的誰
-          <br />你我無所謂 再次你也無法墜毀
+          <br />這次不用再害怕
           <br />
-          <br />還給我 我要我們不再是一個我
-          <br />就還給我 儘管破碎 又能得到什麼
+          <br />那就遠走吧
+          <br />世界再大也攔不住你的輕狂
+          <br />讓誰淚如雨下的情話
+          <br />沖散了你的去向
           <br />
-          <br />是什麼留下什麼累積在腦海
-          <br />又是什麼必須掩埋或者被塗改
-          <br />你說我說你說我說你說我說你說我說你說
-          <br />我說你說我說你說我說你說我說你說我說
-          <br />你說我說你說我說你說我說你說我說你說
-          <br />我說我說我說（你說你說你說）
+          <br />那就啟程吧
+          <br />多麼徬徨就看作是一個笑話
+          <br />去到我去不了的地方
+          <br />有我在等你回來
+          <br />就走吧
           <br />
           <br />
         </div>

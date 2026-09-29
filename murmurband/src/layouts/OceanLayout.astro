@@ -3,12 +3,12 @@ import SocialLinks from '../components/SocialLinks.astro';
 import SiteLayout from './SiteLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/ocean.css';
-interface Props { title: string; background?: string; }
-const { title, background = '/1.jpg' } = Astro.props;
+interface Props { title: string; background?: string; mobileBackground?: string; }
+const { title, background = '/1.jpg', mobileBackground = background } = Astro.props;
 ---
 <SiteLayout title={title}>
   <a class="skip-link" href="#page-content">跳至主要內容</a>
-  <div class="ocean-atmosphere" style={`--page-background: url("${background}")`} aria-hidden="true"></div>
+  <div class="ocean-atmosphere" style={`--page-background: url("${background}"); --mobile-background: url("${mobileBackground}")`} aria-hidden="true"></div>
   <SiteHeader background={background} />
   <div><slot /></div>
   <footer class="ocean-footer">
