@@ -1,0 +1,39 @@
+html { overflow-x: clip; overscroll-behavior-y: none; background: #103c55; }
+body { overflow-x: clip; min-width: 0; }
+/* Opacity avoids moving content or changing the containing block of backgrounds. */
+main, body > header, .site-header, .photo, .bg {
+  animation: page-enter 1.6s ease-in-out both;
+}
+@keyframes page-enter { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  main, body > header, .site-header, .photo, .bg { animation: none; }
+}
+
+/* Shared keyboard access without changing the resting appearance. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+body .skip-link {
+  position: fixed; top: -100px; left: 20px; z-index: 10001;
+  padding: 12px; background: #103c55; color: #e2edf3;
+}
+body .skip-link:focus { top: 10px; }
+body :is(a, button, input, summary):focus-visible {
+  outline: 2px solid currentColor; outline-offset: 3px;
+}
+/* Keep edge-aligned footer focus rings inside the viewport. */
+body :is(.home-footer, .ocean-footer) a:focus-visible { outline-offset: -2px; }
+[id] { scroll-margin-top: 100px; }
+@media (forced-colors: active) {
+  body :is(a, button, input, summary):focus-visible { outline-color: Highlight; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body *, body *::before, body *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

@@ -1,0 +1,64 @@
+---
+import OceanLayout from '../layouts/OceanLayout.astro';
+import releases from '../data/releases.json';
+const release = releases.find((item) => item.slug === "tossandturn")!;
+---
+<OceanLayout title={release.title + ' · Murmur'}>
+  <main id="page-content" tabindex="-1" class="lyrics-page">
+    <aside class="record-panel">
+      <a class="back-link" lang="en" href="/works.html">← All works</a>
+      <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      <p class="record-title">{release.title}</p>
+      {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
+      <p class="eyebrow">{release.date}</p>
+      <div class="st_composer">作詞：施柏年・作曲：施柏年／曾偌荃<br> Dedicate to Joey </div>
+      <div class="st_artist">
+            編曲 Arranger｜施柏年 Marcus Shih
+            <br>主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>合聲編寫 Backing Vocalist｜盧瑞珍 Jane Lu
+            <br>木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
+            <br>
+            <br>
+        </div>
+    </aside>
+    <article class="lyrics-content">
+<div class = st> 
+        <h1><a class="st_title" href="https://youtu.be/EJQTqC6V-Fo?si=iXjHkUhcrZPxNVqq">輾轉</a></h1>   
+           
+        <div class="st_text">
+            是什麼在不成眠的夜翻騰
+            <br>窗外微亮滲透過失眠夜色
+            <br>麻木已久卻還悸動的炙熱
+            <br>重複著
+            <br>渴望擁抱但遺失所有清澈
+            <br>
+            <br>是什麼在不完整的夜翻滾
+            <br>又一個人在看著天亮恍神
+            <br>漣漪太短你給的都太溫和
+            <br>厭倦了
+            <br>渴望逃離卻又失而復得
+            <br>
+            <br>日子斑駁 在昨夜夢中
+            <br>我是燈火 仍為你閃爍
+            <br>輾轉拼湊 散落一地溫柔
+            <br>倘若無可奈何就放手
+            <br>
+            <br>是什麼把那些眼淚都沸騰
+            <br>或者還在期待什麼會發生
+            <br>習慣失去習慣獨自再振奮
+            <br>無所謂了
+            <br>渴望誰找到自己又如何
+            <br>
+            <br>日子斑駁 在昨夜夢中
+            <br>我是燈火 仍為你閃爍
+            <br>輾轉拼湊 散落一地溫柔
+            <br>倘若無可奈何就放手  
+            <br>
+            <br>
+        </div>
+           
+    </div>
+      <a class="back-link lyrics-back" lang="en" href="/works.html">← All works</a>
+    </article>
+  </main>
+</OceanLayout>

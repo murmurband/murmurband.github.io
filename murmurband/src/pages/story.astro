@@ -1,0 +1,110 @@
+---
+import OceanLayout from "../layouts/OceanLayout.astro";
+---
+
+<OceanLayout title="Story · Murmur">
+  <main id="page-content" tabindex="-1" class="story-page story-page-text">
+    <article class="story-content">
+      <p class="eyebrow" lang="en">Our story</p>
+      <h1>自言自語</h1>
+      <div class="story-text">
+        <p>
+          在這個吵雜混亂的世界裡，<br
+          />我們很容易透過別人的話語或評價來定義自己。<br
+          />忘記了靜下心來與自己對話這件事情。
+        </p>
+        <p>那些你一個人在房間時，與自己對話的種種，<br />才是真正的你。</p>
+        <p>
+          背上貼滿的標籤，是你留給這個複雜世界最後的溫柔。<br
+          />只要永遠記得褪下偽裝的自己是什麼樣子，就足夠了。
+        </p>
+        <blockquote>
+          <p>
+            「你過得開心嗎？」<br />「你喜歡什麼呢？」<br
+            />「你討厭這些吧。」<br />「你很難過吧。」
+          </p>
+        </blockquote>
+        <p class="story-refrain">
+          自言自語，自問自答。
+          <img
+            class="story-slogan"
+            src="/slogan.png"
+            alt="所有的自言自語構築了我們。"
+            width="1920"
+            height="300"
+          />
+        </p>
+        <p>也許總有一天會迷失方向，<br />但請不要忘記和自己保持聯絡。</p>
+      </div>
+    </article>
+  </main>
+</OceanLayout>
+
+<style>
+  .story-page-text {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: clamp(54px, 9vw, 110px) 7% 60px;
+    text-align: center;
+  }
+  .story-content h1 {
+    font-size: clamp(34px, 5vw, 56px);
+    letter-spacing: 0.3em;
+    padding-left: 0.3em;
+    margin: 22px 0 64px;
+  }
+  .eyebrow {
+    letter-spacing: 0.3em;
+  }
+  .story-text {
+    font-size: 14px;
+    line-height: 2.7;
+    letter-spacing: 0.06em;
+    text-wrap: pretty;
+  }
+  .story-text p {
+    margin: 0 0 38px;
+  }
+  blockquote {
+    margin: 56px 0;
+    color: var(--muted);
+  }
+  blockquote::before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 1px;
+    margin: 0 auto 32px;
+    background: var(--line);
+  }
+  .story-text .story-refrain {
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    margin-bottom: 48px;
+  }
+  .story-refrain .story-slogan {
+    display: block;
+    width: auto;
+    max-width: 70%;
+    height: auto;
+    margin: 18px auto 0;
+    opacity: 1;
+  }
+  @media (max-width: 650px) {
+    .story-page-text {
+      padding: 48px 7% 24px;
+    }
+    .story-text {
+      font-size: 13px;
+      letter-spacing: 0.025em;
+    }
+    .story-text .story-refrain {
+      font-size: 16px;
+    }
+    .story-content h1 {
+      margin-bottom: 44px;
+    }
+  }
+</style>

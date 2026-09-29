@@ -1,0 +1,47 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import '../styles/works.css';
+---
+<SiteLayout title="Demo · Murmur">
+<a class="skip-link" href="#page-content">跳至主要內容</a>
+<main style="display: contents">
+<h1 id="page-content" tabindex="-1" class="sr-only" lang="en">Murmur Demo</h1>
+<div class="title">
+        
+            <img class="titleimg" src="/Murmur-logo-text.png" alt="Murmur"> 
+        
+    </div>
+ 
+    
+    <label class="buger-class" for="burger"><img src="/menu.png" alt="顯示導覽選單"></label>
+    <input class="cxbox" type="checkbox" id="burger" checked aria-controls="legacy-menu">
+    <nav class="menu" id="legacy-menu" aria-label="主要導覽" lang="en"> 
+        <a href="/story.html">story</a>
+        <a href="/works.html">works</a>
+        
+    </nav>
+
+    <div class="photo">
+        <img src="/3.jpg" alt="兩人坐在戶外草地上，其中一人彈奏木吉他。"> 
+    </div>    
+
+    <div class=logo></div>
+</main>
+</SiteLayout>
+
+<script>
+  const toggle = document.querySelector<HTMLInputElement>('#burger');
+  const menu = document.querySelector<HTMLElement>('#legacy-menu');
+  if (toggle && menu) {
+    const update = () => { menu.hidden = !toggle.checked; };
+    toggle.addEventListener('change', update);
+    update();
+  }
+</script>
+<style>
+  .menu a { color: #e2edf3; display: inline-flex; min-height: 24px; align-items: center; }
+  .menu a + a { margin-left: 8px; }
+  .cxbox { width: 24px; height: 24px; min-height: 24px; flex-shrink: 0; }
+  .buger-class, .photo { max-width: 100%; }
+  .buger-class img, .photo img { max-width: 100%; height: auto; }
+</style>

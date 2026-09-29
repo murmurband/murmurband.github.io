@@ -1,0 +1,20 @@
+<div class="social-links" lang="en">
+  <a href="https://reurl.cc/mZd4zl" aria-label="Instagram"><span>Instagram</span><img class="instagram" src="/instagram.png" alt="" width="512" height="512" /></a>
+  <a href="https://www.youtube.com/@murmurband_" aria-label="YouTube"><span>YouTube</span><img class="youtube" src="/youtube.png" alt="" width="512" height="512" /></a>
+  <a href="https://reurl.cc/GXkLaW" aria-label="StreetVoice"><span>StreetVoice</span><img class="streetvoice" src="/streetvoice.png" alt="" width="3600" height="3600" /></a>
+</div>
+
+<style>
+  .social-links { display: flex; gap: 23px; align-items: center; justify-content: flex-end; }
+  img { display: none; }
+  @media (max-width: 760px) {
+    .social-links { gap: 2px; }
+    a { display: flex; width: 36px; height: 40px; align-items: center; justify-content: center; }
+    span { display: none; }
+    img { display: block; width: 20px; height: 20px; max-width: none; object-fit: contain; filter: invert(1); opacity: .8; }
+    .youtube { width: 26px; height: 26px; }
+    /* Compensate for the transparent 300px border around the StreetVoice artwork. */
+    .streetvoice { width: 24px; height: 24px; }
+    a:hover img, a:focus-visible img { opacity: 1; }
+  }
+</style>

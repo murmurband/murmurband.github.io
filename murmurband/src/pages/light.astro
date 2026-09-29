@@ -1,0 +1,73 @@
+---
+import OceanLayout from '../layouts/OceanLayout.astro';
+import releases from '../data/releases.json';
+const release = releases.find((item) => item.slug === "light")!;
+---
+<OceanLayout title={release.title + ' · Murmur'}>
+  <main id="page-content" tabindex="-1" class="lyrics-page">
+    <aside class="record-panel">
+      <a class="back-link" lang="en" href="/works.html">← All works</a>
+      <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      <p class="record-title">{release.title}</p>
+      {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
+      <p class="eyebrow">{release.date}</p>
+      <div class="st_composer">作詞・作曲：施柏年</div>
+      <div class="st_artist">
+            編曲 Arranger｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
+            <br>電吉他 Electric Guitarist｜施柏年 Marcus Shih
+            <br>貝斯 Bassist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>鼓組 Drummer｜李啟倫 Lawrence Lee from 300ss音樂劇場
+            <br>
+            <br>
+        </div>
+    </aside>
+    <article class="lyrics-content">
+<div class = st> 
+        <h1><a class="st_title" href="https://youtu.be/OHIqgLzehmU?si=pHi39gT9zpczUzRx">給你的光</a></h1>   
+           
+        <div class="st_text">
+            翻開了膠捲 只看見徬徨的側臉
+            <br>誰能讀懂你 沒關係背後的疲倦
+            <br>裝作無所謂 你說你想帶我去
+            <br>看你看的世界 但我早在你心裡面
+            <br>
+            <br>就閉上眼飛過了瞬間
+            <br>嚮往的翩躚
+            <br>眼淚之間 倔強不被夜色淹滅
+            <br>睜開眼就拭去謊言
+            <br>美好的殘缺
+            <br>堅定在身邊 這次你就只管往前
+            <br>
+            <br>聽膩了安慰 學不會勇敢的拒絕
+            <br>不曾感受的 也不想要就此妥協
+            <br>裝作無所謂 你說你想帶我去
+            <br>看你看的世界 但我早在你心裡面
+            <br>
+            <br>就閉上眼飛過了瞬間
+            <br>嚮往的翩躚
+            <br>眼淚之間 倔強不被夜色淹滅
+            <br>睜開眼就拭去謊言
+            <br>美好的殘缺
+            <br>堅定在身邊 這次你就只管往前
+            <br>
+            <br>我想我還沒辦法說再見
+            <br>但你就儘管走遠
+            <br>我有你給我的一切
+            <br>
+            <br>就閉上眼飛過了瞬間
+            <br>嚮往的翩躚
+            <br>笑容之間 能夠綻放玫瑰
+            <br>再睜開眼就拭去昨天
+            <br>完美的不完美
+            <br>我在你身邊 今後你就只管閃爍黑夜
+            <br>
+            <br>           
+        </div>
+           
+    </div>
+      <a class="back-link lyrics-back" lang="en" href="/works.html">← All works</a>
+    </article>
+  </main>
+</OceanLayout>

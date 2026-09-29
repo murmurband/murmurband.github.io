@@ -1,0 +1,19 @@
+---
+import OceanLayout from '../layouts/OceanLayout.astro';
+import releases from '../data/releases.json';
+---
+<OceanLayout title="Works · Murmur" background="/4.jpg">
+  <main id="page-content" tabindex="-1" class="works-page">
+    <header class="page-heading"><h1 lang="en">Works</h1></header>
+    <ul class="release-grid" role="list">
+      {releases.map((release) => (
+        <li><a class="release-card" href={`/${release.slug}.html`}>
+          <div class="cover-frame"><img src={release.image} alt="" loading="lazy" /></div>
+          <div class="release-caption"><h2>{release.title}</h2><span aria-hidden="true">↗</span></div>
+          <p class="release-english" lang="en">{release.english}</p>
+          <p class="eyebrow">{release.date}</p>
+        </a></li>
+      ))}
+    </ul>
+  </main>
+</OceanLayout>

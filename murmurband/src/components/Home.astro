@@ -1,0 +1,79 @@
+---
+import SocialLinks from "../components/SocialLinks.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import SiteHeader from "./SiteHeader.astro";
+import HomeOpening from "./HomeOpening.astro";
+import "../styles/home.css";
+---
+
+<SiteLayout>
+  <Fragment slot="head">
+    <style is:inline>
+      html.opening-pending .home-shell,
+      html.opening-active .home-shell { visibility: hidden; }
+    </style>
+    <script is:inline>
+      (() => {
+        let seen = false;
+        try { seen = sessionStorage.getItem('murmur-opening-seen') === '1'; } catch {}
+        try {
+          seen = seen || localStorage.getItem('murmur-opening-seen') === '1';
+          if (seen) localStorage.setItem('murmur-opening-seen', '1');
+        } catch {}
+        const navigation = performance.getEntriesByType('navigation')[0];
+        const returning = navigation?.type === 'reload' || navigation?.type === 'back_forward';
+        if (!seen && !returning && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.add('opening-pending');
+          window.setTimeout(() => document.documentElement.classList.remove('opening-pending'), 9000);
+        }
+      })();
+    </script>
+    <meta
+      name="description"
+      content="自言自語 Murmur — 所有的自言自語構築了我們。音樂、故事，以及宇宙裡的星點。"
+    />
+    <script
+      is:inline
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script is:inline defer src="/js/home.js"></script>
+  </Fragment>
+  <div class="home-shell">
+    <a class="skip-link" href="#page-content">跳至主要內容</a>
+    <SiteHeader home />
+    <main id="page-content" tabindex="-1">
+      <section class="home-hero" aria-labelledby="home-title">
+        <div class="artwork" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 760px)" srcset="/2.jpg" />
+            <img
+              class="ocean-background"
+              src="/1.jpg"
+              alt=""
+              fetchpriority="high"
+            />
+          </picture>
+          <div class="ocean-shade"></div>
+          <div id="murmur-canvas"></div>
+        </div>
+        <div class="hero-title">
+          <h1 id="home-title">
+            <img
+              class="main-logo"
+              src="/Murmur-logo-text.png"
+              alt="Murmur"
+              fetchpriority="high"
+            />
+          </h1>
+          <p class="chinese-name">自言自語</p>
+        </div>
+        <p class="sentence-fallback">所有的自言自語構築了我們。</p>
+      </section>
+    </main>
+    <footer class="home-footer">
+      <span>© {new Date().getFullYear()} 自言自語 MURMUR</span><SocialLinks />
+    </footer>
+  </div>
+  <HomeOpening />
+</SiteLayout>
+

@@ -1,0 +1,68 @@
+---
+import OceanLayout from '../layouts/OceanLayout.astro';
+import releases from '../data/releases.json';
+const release = releases.find((item) => item.slug === "missu")!;
+---
+<OceanLayout title={release.title + ' · Murmur'}>
+  <main id="page-content" tabindex="-1" class="lyrics-page">
+    <aside class="record-panel">
+      <a class="back-link" lang="en" href="/works.html">← All works</a>
+      <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      <p class="record-title">{release.title}</p>
+      {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
+      <p class="eyebrow">{release.date}</p>
+      <div class="st_composer">作詞・作曲：施柏年</div>
+      <div class="st_artist">
+            編曲 Arranger｜施柏年 Marcus Shih
+            <br>和聲編寫 Harmony｜盧瑞珍Jane Lu
+            <br>主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
+            <br>電吉他 Electric Guitarist ｜施柏年Marcus Shih
+            <br>
+            <br>
+        </div>
+    </aside>
+    <article class="lyrics-content">
+<div class = st> 
+        <h1><a class="st_title" href="https://youtu.be/FTL6Z4m6QRw?si=2A8X46pxonuPJ6-2">我好想你</a></h1>   
+           
+        <div class="st_text">
+            還記得你習慣一個人走
+            <br>你是否把自己交給寂寞
+            <br>想不起什麼時候
+            <br>把你給弄丟
+            <br>我能夠再見到你嗎
+            <br>
+            <br>可是你 消失很久
+            <br>可是我 受夠
+            <br>請不要再說加油
+            <br>
+            <br>我好想你 你說的話我還無法忘記
+            <br>要多少努力才能夠再
+            <br>遇見你 你會在哪裡引領我回去
+            <br>告訴我沒關係
+            <br>
+            <br>可是你 消失之後
+            <br>可是我 渴求
+            <br>請大聲的呼喚我
+            <br>
+            <br>我好想你 你說的話我還無法忘記
+            <br>要多少努力才能夠再
+            <br>遇見你 你會在哪裡引領我回去
+            <br>告訴我沒關係
+            <br>
+            <br>告訴我 不要太著急
+            <br>
+            <br>我好想你 原來你就是曾開朗的自己
+            <br>為了找到你用盡力氣
+            <br>再相遇 我要擁抱追尋你的痕跡
+            <br>我已經很努力 
+            <br>
+            <br>
+        </div>
+           
+    </div>
+      <a class="back-link lyrics-back" lang="en" href="/works.html">← All works</a>
+    </article>
+  </main>
+</OceanLayout>

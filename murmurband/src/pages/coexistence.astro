@@ -1,0 +1,62 @@
+---
+import OceanLayout from '../layouts/OceanLayout.astro';
+import releases from '../data/releases.json';
+const release = releases.find((item) => item.slug === "coexistence")!;
+---
+<OceanLayout title={release.title + ' · Murmur'}>
+  <main id="page-content" tabindex="-1" class="lyrics-page">
+    <aside class="record-panel">
+      <a class="back-link" lang="en" href="/works.html">← All works</a>
+      <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      <p class="record-title">{release.title}</p>
+      {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
+      <p class="eyebrow">{release.date}</p>
+      <div class="st_composer">作詞・作曲：盧瑞珍／施柏年</div>
+      <div class="st_artist">
+            編曲 Arranger｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>合聲 Backing Vocalist｜盧瑞珍 Jane Lu
+            <br>木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
+            <br>電吉他 Electric Guitarist｜施柏年 Marcus Shih
+            <br>貝斯 Bassist｜施柏年 Marcus Shih
+            <br>鼓組 Drummer｜李啟綸 Lawrence Lee from 300ss音樂劇場
+            <br>鍵盤 Keyboardist｜楊翊 Yang I
+            <br>
+            <br>
+        </div>
+    </aside>
+    <article class="lyrics-content">
+<div class = st> 
+        <h1><a class="st_title" href="https://youtu.be/JuUPLjmybdU?si=tm8hT_MH8RX1nzEI">共生</a></h1>   
+           
+        <div class="st_text">
+            你知道所有傷口都會留疤
+            <br>一片一片 剝落相同地方
+            <br>你知道「再試一次」其實都是謊話
+            <br>就假裝 沒意料
+            <br>
+            <br>妥協 讓一切反覆上演
+            <br>癥結 你我間的重疊
+            <br>分不開的實偽 我不想再次和解
+            <br>你會 把屬於我的歸位
+            <br>我會 變成唯一的誰
+            <br>你我無所謂 再次你也無法墜毀
+            <br>
+            <br>還給我 我要我們不再是一個我
+            <br>就還給我 儘管破碎 又能得到什麼
+            <br>
+            <br>是什麼留下什麼累積在腦海
+            <br>又是什麼必須掩埋或者被塗改
+            <br>你說我說你說我說你說我說你說我說你說
+            <br>我說你說我說你說我說你說我說你說我說
+            <br>你說我說你說我說你說我說你說我說你說
+            <br>我說我說我說（你說你說你說） 
+            <br>
+            <br>
+        </div>
+           
+    </div>
+      <a class="back-link lyrics-back" lang="en" href="/works.html">← All works</a>
+    </article>
+  </main>
+</OceanLayout>

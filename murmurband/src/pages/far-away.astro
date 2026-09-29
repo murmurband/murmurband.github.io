@@ -1,0 +1,53 @@
+---
+import OceanLayout from '../layouts/OceanLayout.astro';
+import releases from '../data/releases.json';
+const release = releases.find((item) => item.slug === "far-away")!;
+---
+<OceanLayout title={release.title + ' · Murmur'}>
+  <main id="page-content" tabindex="-1" class="lyrics-page">
+    <aside class="record-panel">
+      <a class="back-link" lang="en" href="/works.html">← All works</a>
+      <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      <p class="record-title">{release.title}</p>
+      {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
+      <p class="eyebrow">{release.date}</p>
+      <div class="st_composer">作詞・作曲：施柏年</div>
+      <div class="st_artist">
+            編曲 Arranger｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+            <br>木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
+            <br>
+            <br>
+        </div>
+    </aside>
+    <article class="lyrics-content">
+<div class = st> 
+        <h1><a class="st_title" href="https://youtu.be/-8ApBER-_JI?si=Qo5TGBMbJf5xFmKD">遠走</a></h1>   
+           
+        <div class="st_text">
+            <br>嘿 還睡不著嗎
+            <br>怎麼又開始迷惘的眼神裡隱藏多少渴望
+            <br>嘿 那就別睡啊
+            <br>打包行李去闖那些想受卻不敢受的傷
+            <br>
+            <br>這次不用再害怕
+            <br>
+            <br>那就遠走吧
+            <br>世界再大也攔不住你的輕狂
+            <br>讓誰淚如雨下的情話
+            <br>沖散了你的去向
+            <br>
+            <br>那就啟程吧
+            <br>多麼徬徨就看作是一個笑話
+            <br>去到我去不了的地方
+            <br>有我在等你回來
+            <br>就走吧
+            <br>
+            <br>           
+        </div>
+           
+    </div>
+      <a class="back-link lyrics-back" lang="en" href="/works.html">← All works</a>
+    </article>
+  </main>
+</OceanLayout>
