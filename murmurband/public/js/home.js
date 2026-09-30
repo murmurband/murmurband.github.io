@@ -66,7 +66,10 @@
   const sentenceFont = nameStyle.fontFamily;
   try {
     // Request every lyric glyph: Google Fonts serves CJK fonts in subsets.
-    await document.fonts.load(`${nameStyle.fontWeight} 21px ${sentenceFont}`, sentences.join(""));
+    await document.fonts.load(
+      `${nameStyle.fontWeight} 21px ${sentenceFont}`,
+      sentences.join("")
+    );
   } catch {
     // Keep the animation available when the remote font is unavailable.
   }
@@ -80,14 +83,22 @@
     // Sentence zero has already played at the start of the first round.
     if (sentenceQueue === null || sentenceQueue.length === 0) {
       const firstRound = sentenceQueue === null;
-      sentenceQueue = sentences.map((_, index) => index).filter((index) => !firstRound || index !== 0);
+      sentenceQueue = sentences
+        .map((_, index) => index)
+        .filter((index) => !firstRound || index !== 0);
       for (let i = sentenceQueue.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [sentenceQueue[i], sentenceQueue[j]] = [sentenceQueue[j], sentenceQueue[i]];
+        [sentenceQueue[i], sentenceQueue[j]] = [
+          sentenceQueue[j],
+          sentenceQueue[i],
+        ];
       }
       const last = sentenceQueue.length - 1;
       if (last > 0 && sentenceQueue[last] === sentenceIndex) {
-        [sentenceQueue[0], sentenceQueue[last]] = [sentenceQueue[last], sentenceQueue[0]];
+        [sentenceQueue[0], sentenceQueue[last]] = [
+          sentenceQueue[last],
+          sentenceQueue[0],
+        ];
       }
     }
     return sentenceQueue.pop() ?? 0;
@@ -164,7 +175,7 @@
       p.push();
       p.noStroke();
       p.fill(224, 233, 228, 220);
-      const textSize = h <= 500 && w > h ? 15 : w <= 760 ? 18 : 23;
+      const textSize = h <= 500 && w > h ? 13 : w <= 760 ? 18 : 23;
       const fittedSize = Math.min(textSize, (w * 0.82) / sentence.length);
       const fragment = sentence.slice(0, visible);
       // Center the visible glyphs, including punctuation, rather than the
@@ -178,7 +189,11 @@
       const left = bounds.actualBoundingBoxLeft ?? 0;
       const right = bounds.actualBoundingBoxRight ?? bounds.width;
       const textX = (w + left - right) / 2;
-      context.fillText(fragment, textX, h * (h <= 500 ? 0.75 : w < 760 ? 0.7 : 0.75));
+      context.fillText(
+        fragment,
+        textX,
+        h * (h <= 500 ? 0.75 : w < 760 ? 0.7 : 0.75)
+      );
       p.pop();
       if (!paused) {
         sentenceTime += Math.min(p.deltaTime, 100) / 1000;
