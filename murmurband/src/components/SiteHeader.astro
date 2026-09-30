@@ -1,4 +1,5 @@
 ---
+import ArrowUpRight from './ArrowUpRight.astro';
 interface Props {
   home?: boolean;
   background?: string;
@@ -44,7 +45,7 @@ const path = Astro.url.pathname;
     <a
       href="https://linktr.ee/murmurband_?utm_source=linktree_profile_share&ltsid=f223bfbf-0435-4904-9b14-59e297adc366"
       aria-label="Contact Murmur"
-      ><span class="nav-text">Contact <span aria-hidden="true">↗</span></span></a
+      ><span class="nav-text">Contact <ArrowUpRight /></span></a
     >
   </nav>
 </header>

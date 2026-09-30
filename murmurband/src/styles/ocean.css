@@ -133,7 +133,7 @@ img {
   font-weight: 400;
   margin: 0;
 }
-.release-caption > span {
+.release-caption > svg {
   color: var(--muted);
 }
 .release-english {

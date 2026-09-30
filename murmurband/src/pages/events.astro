@@ -1,4 +1,5 @@
 ---
+import ArrowUpRight from '../components/ArrowUpRight.astro';
 import OceanLayout from "../layouts/OceanLayout.astro";
 import { events, displayDate } from "../lib/events";
 import "../styles/events.css";
@@ -40,7 +41,7 @@ const years = [...new Set(events.map((event) => event.date.slice(0, 4)))];
                       <p>{event.city}</p>
                       {event.videoUrl && (
                         <a class="event-video" href={event.videoUrl} lang="en">
-                          Watch performance <span aria-hidden="true">↗</span>
+                          Watch performance <ArrowUpRight />
                         </a>
                       )}
                     </div>
