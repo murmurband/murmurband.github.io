@@ -14,7 +14,7 @@ body {
   margin: 0;
   background: var(--sea);
   color: var(--ink);
-  font-family: "Shippori Mincho", serif;
+  font-family: var(--font-chinese);
 }
 a {
   color: inherit;
@@ -247,6 +247,12 @@ img {
   letter-spacing: 0.07em;
   color: var(--muted);
   line-height: 2;
+}
+.st_composer .credit-part {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+  overflow-wrap: anywhere;
 }
 .st_text {
   font-size: 15px;

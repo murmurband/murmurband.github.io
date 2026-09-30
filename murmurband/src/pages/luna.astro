@@ -1,82 +1,98 @@
 ---
-import OceanLayout from '../layouts/OceanLayout.astro';
-import releases from '../data/releases.json';
+import OceanLayout from "../layouts/OceanLayout.astro";
+import releases from "../data/releases.json";
 const release = releases.find((item) => item.slug === "luna")!;
-const songUrl = 'https://youtu.be/z_QK-qF2HlA?si=CanFJE1keeyidgNx';
+const songUrl = "https://youtu.be/z_QK-qF2HlA?si=CanFJE1keeyidgNx";
 ---
-<OceanLayout mobileBackground="/9.JPG" title={release.title + ' · Murmur'}>
+
+<OceanLayout mobileBackground="/9.JPG" title={release.title + " · Murmur"}>
   <main id="page-content" tabindex="-1" class="lyrics-page">
     <aside class="record-panel">
       <a class="back-link" lang="en" href="/works.html">← All works</a>
-      <a class="record-cover-link" href={songUrl} aria-label={release.title + ' — 聆聽歌曲'}>
-        <img class="record-cover" src={release.image} alt={release.title + ' 封面'} />
+      <a
+        class="record-cover-link"
+        href={songUrl}
+        aria-label={release.title + " — 聆聽歌曲"}
+      >
+        <img
+          class="record-cover"
+          src={release.image}
+          alt={release.title + " 封面"}
+        />
       </a>
       <p class="record-title"><a href={songUrl}>{release.title}</a></p>
-      {release.english !== release.title && <p class="record-name" lang="en">{release.english}</p>}
+      {
+        release.english !== release.title && (
+          <p class="record-name" lang="en">
+            {release.english}
+          </p>
+        )
+      }
       <p class="eyebrow">{release.date}</p>
-      <div class="st_composer">作詞・作曲：施柏年</div>
+      <div class="st_composer">作詞・作曲：施柏年 Marcus Shih</div>
       <div class="st_artist">
-            編曲 Arranger｜施柏年 Marcus Shih
-            <br>主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
-            <br>木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
-            <br>
-            <br>
-        </div>
+        編曲 Arranger｜施柏年 Marcus Shih
+        <br />主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
+        <br />木吉他 Acoustic Guitarist｜施柏年 Marcus Shih
+        <br />
+        <br />
+      </div>
     </aside>
     <article class="lyrics-content">
-<div class = st> 
-        <h1><a class="st_title" href={songUrl}>{release.title}</a></h1>   
-           
+      <div class="st">
+        <h1><a class="st_title" href={songUrl}>{release.title}</a></h1>
+
         <div class="st_text">
-                從 城市的街頭
-                <br>走 過無數傷口
-                <br>疲倦太久 直到日落
-                <br>不斷尋求
-                <br>
-                <br>我 掙扎過墮落
-                <br>你 卻停止沈默
-                <br>如此溫柔 再也不走
-                <br>將我緊擁
-                <br>
-                <br>在你的花火之中世界便開始閃爍
-                <br>流動了孤獨的黑洞
-                <br>奮不顧身為我保留
-                <br>你的眼眸之中時間便從此永久
-                <br>蔓延一個秋或今後
-                <br>喜怒哀愁依舊
-                <br>
-                <br>在 人海中踅走
-                <br>跌 跌撞撞卻又
-                <br>被你擄獲 日常平庸
-                <br>期待生活
-                <br>
-                <br>遇 見最美的夢
-                <br>就 不需去佔有
-                <br>絢爛彩虹 或誰的手
-                <br>為你佇留
-                <br>
-                <br>在你的花火之中世界便開始閃爍
-                <br>流動了孤獨的黑洞
-                <br>奮不顧身為我保留
-                <br>你的眼眸之中時間便從此永久
-                <br>蔓延一個秋或今後
-                <br>喜怒哀愁依舊
-                <br>
-                <br>在你的花火之中時間便開始蹉跎
-                <br>倘若你只能夠退縮
-                <br>我會陪在你的身後
-                <br>
-                <br>你的眼眸之中時間便從此永久
-                <br>蔓延一個秋或今後
-                <br>喜怒哀愁依舊
-                <br>
-                <br>擁有你哪怕如果
-            <br>
-            <br>           
+          從 城市的街頭
+          <br />走 過無數傷口
+          <br />疲倦太久 直到日落
+          <br />不斷尋求
+          <br />
+          <br />我 掙扎過墮落
+          <br />你 卻停止沈默
+          <br />如此溫柔 再也不走
+          <br />將我緊擁
+          <br />
+          <br />在你的花火之中世界便開始閃爍
+          <br />流動了孤獨的黑洞
+          <br />奮不顧身為我保留
+          <br />你的眼眸之中時間便從此永久
+          <br />蔓延一個秋或今後
+          <br />喜怒哀愁依舊
+          <br />
+          <br />在 人海中踅走
+          <br />跌 跌撞撞卻又
+          <br />被你擄獲 日常平庸
+          <br />期待生活
+          <br />
+          <br />遇 見最美的夢
+          <br />就 不需去佔有
+          <br />絢爛彩虹 或誰的手
+          <br />為你佇留
+          <br />
+          <br />在你的花火之中世界便開始閃爍
+          <br />流動了孤獨的黑洞
+          <br />奮不顧身為我保留
+          <br />你的眼眸之中時間便從此永久
+          <br />蔓延一個秋或今後
+          <br />喜怒哀愁依舊
+          <br />
+          <br />在你的花火之中時間便開始蹉跎
+          <br />倘若你只能夠退縮
+          <br />我會陪在你的身後
+          <br />
+          <br />你的眼眸之中時間便從此永久
+          <br />蔓延一個秋或今後
+          <br />喜怒哀愁依舊
+          <br />
+          <br />擁有你哪怕如果
+          <br />
+          <br />
         </div>
-           
-    </div>
-      <a class="back-link lyrics-back" lang="en" href="/works.html">← All works</a>
+      </div>
+      <a class="back-link lyrics-back" lang="en" href="/works.html"
+        >← All works</a
+      >
     </article>
   </main>
 </OceanLayout>

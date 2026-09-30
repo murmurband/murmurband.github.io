@@ -57,7 +57,7 @@ function setup() {
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("canvas-container");
 //   textFont(customFont); // 設置自定義字體
-  textFont('Shippori Mincho', 'Serif');
+  textFont('Noto Serif TC');
   textSize(17);
   textAlign(LEFT, TOP);
 //   textStyle(LIGHT);

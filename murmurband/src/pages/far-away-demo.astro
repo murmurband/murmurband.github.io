@@ -1,7 +1,7 @@
 ---
 import OceanLayout from "../layouts/OceanLayout.astro";
 import releases from "../data/releases.json";
-const release = releases.find((item) => item.slug === "far-away")!;
+const release = releases.find((item) => item.slug === "far-away-demo")!;
 const songUrl = "https://youtu.be/-8ApBER-_JI?si=Qo5TGBMbJf5xFmKD";
 ---
 
@@ -29,7 +29,7 @@ const songUrl = "https://youtu.be/-8ApBER-_JI?si=Qo5TGBMbJf5xFmKD";
         )
       }
       <p class="eyebrow">{release.date}</p>
-      <div class="st_composer">作詞・作曲：施柏年</div>
+      <div class="st_composer">作詞・作曲：施柏年 Marcus Shih</div>
       <div class="st_artist">
         編曲 Arranger｜盧瑞珍 Jane Lu／施柏年 Marcus Shih
         <br />主唱 Vocalist｜盧瑞珍 Jane Lu／施柏年 Marcus Shih

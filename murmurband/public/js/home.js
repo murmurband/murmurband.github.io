@@ -61,18 +61,12 @@
     "淹不過你的芬芳。",
     "循著你留下的微光。",
   ];
-  // p5 treats textFont's string as one family, not a CSS fallback list.
+  // Use the same Noto Serif TC family as the rest of the site.
   const nameStyle = getComputedStyle(document.querySelector(".chinese-name"));
-  const sentenceFont = nameStyle.fontFamily
-    .split(",")[0]
-    .trim()
-    .replace(/^['"]|['"]$/g, "");
+  const sentenceFont = nameStyle.fontFamily;
   try {
     // Request every lyric glyph: Google Fonts serves CJK fonts in subsets.
-    await document.fonts.load(
-      `${nameStyle.fontWeight} 21px "${sentenceFont}"`,
-      sentences.join("")
-    );
+    await document.fonts.load(`${nameStyle.fontWeight} 21px ${sentenceFont}`, sentences.join(""));
   } catch {
     // Keep the animation available when the remote font is unavailable.
   }
@@ -81,6 +75,23 @@
   accessibleLyrics.textContent = sentences.slice(1).join(" ");
   document.querySelector(".sentence-fallback")?.after(accessibleLyrics);
   let sentenceIndex = 0;
+  let sentenceQueue = null;
+  function nextSentence() {
+    // Sentence zero has already played at the start of the first round.
+    if (sentenceQueue === null || sentenceQueue.length === 0) {
+      const firstRound = sentenceQueue === null;
+      sentenceQueue = sentences.map((_, index) => index).filter((index) => !firstRound || index !== 0);
+      for (let i = sentenceQueue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [sentenceQueue[i], sentenceQueue[j]] = [sentenceQueue[j], sentenceQueue[i]];
+      }
+      const last = sentenceQueue.length - 1;
+      if (last > 0 && sentenceQueue[last] === sentenceIndex) {
+        [sentenceQueue[0], sentenceQueue[last]] = [sentenceQueue[last], sentenceQueue[0]];
+      }
+    }
+    return sentenceQueue.pop() ?? 0;
+  }
   let sentenceTime = 0;
   let time = 0;
   // The home shell appears during the fade, but the opening is still active.
@@ -129,6 +140,7 @@
       // Wait for the overlay to be fully dismissed before typing any lyrics.
       if (openingIsActive()) {
         sentenceIndex = 0;
+        sentenceQueue = null;
         sentenceTime = 0;
         return;
       }
@@ -152,21 +164,21 @@
       p.push();
       p.noStroke();
       p.fill(224, 233, 228, 220);
-      p.textFont(sentenceFont);
-      p.textStyle(p.NORMAL);
-      const textSize = h <= 500 && w > h ? 15 : w < 760 ? 18 : 21;
-      p.textSize(Math.min(textSize, (w * 0.82) / sentence.length));
-      p.textAlign(p.LEFT, p.CENTER);
+      const textSize = h <= 500 && w > h ? 15 : w <= 760 ? 18 : 23;
+      const fittedSize = Math.min(textSize, (w * 0.82) / sentence.length);
       const fragment = sentence.slice(0, visible);
       // Center the visible glyphs, including punctuation, rather than the
       // font's advance box (which includes uneven side bearings).
       const context = p.drawingContext;
+      // Native canvas accepts CSS fallback families; p5 textFont quotes them as one name.
+      context.font = `400 ${fittedSize}px ${sentenceFont}`;
+      context.textBaseline = "middle";
       context.textAlign = "left";
       const bounds = context.measureText(fragment);
       const left = bounds.actualBoundingBoxLeft ?? 0;
       const right = bounds.actualBoundingBoxRight ?? bounds.width;
       const textX = (w + left - right) / 2;
-      p.text(fragment, textX, h * (h <= 500 ? 0.75 : w < 760 ? 0.7 : 0.75));
+      context.fillText(fragment, textX, h * (h <= 500 ? 0.75 : w < 760 ? 0.7 : 0.75));
       p.pop();
       if (!paused) {
         sentenceTime += Math.min(p.deltaTime, 100) / 1000;
@@ -174,11 +186,7 @@
           sentenceTime >
           typingDuration + holdDuration + eraseDuration + 0.8
         ) {
-          sentenceIndex =
-            (sentenceIndex +
-              1 +
-              Math.floor(Math.random() * (sentences.length - 1))) %
-            sentences.length;
+          sentenceIndex = nextSentence();
           sentenceTime = 0;
         }
       }
@@ -196,6 +204,7 @@
   new MutationObserver(() => {
     if (openingIsActive()) {
       sentenceIndex = 0;
+      sentenceQueue = null;
       sentenceTime = 0;
     }
     if (paused) sketch.redraw();
