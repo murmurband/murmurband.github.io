@@ -7,6 +7,40 @@ body :is(.home-footer, .ocean-footer) {
   max-width: none;
   padding-inline: var(--page-gutter);
 }
+/* Bring mobile footers closer to the bottom while respecting the safe area. */
+@media (max-width: 760px) {
+  body .ocean-footer { padding-bottom: max(13px, env(safe-area-inset-bottom)); }
+}
+@media (max-width: 760px) and (min-height: 501px) {
+  body .home-footer { padding-bottom: max(21px, env(safe-area-inset-bottom)); }
+}
+/* Mobile reading sizes: let longer credits and footer content wrap naturally. */
+@media (max-width: 760px) {
+  body .eyebrow, body .release-card .eyebrow { font-size: 11px; }
+  body .release-caption h2 { font-size: 16px; }
+  body .release-english { font-size: 13px; }
+  body .story-text { font-size: 15px; }
+  body .story-text .story-refrain { font-size: 18px; }
+  body .st_text { font-size: 16px; line-height: 2.5; }
+  body :is(.st_artist, .st_composer) { font-size: 13px; overflow-wrap: anywhere; }
+  body .record-name { font-size: 17px; }
+  body .back-link { font-size: 13px; min-height: 44px; display: inline-flex; align-items: center; }
+  body .event-row p { font-size: 14px; }
+  body .event-row time { font-size: 14px; }
+  body :is(.event-video, .events-back-top, .event-years) { font-size: 14px; }
+  body .event-years a { min-height: 44px; display: inline-flex; align-items: center; }
+  body .event-video { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; }
+  body .events-heading > p:last-child { font-size: 15px; }
+  body :is(.home-footer, .ocean-footer) { font-size: 12px; gap: 12px; }
+  body :is(.home-footer, .ocean-footer) .social-links { gap: 4px; }
+  body .chinese-name { font-size: 14px; }
+  body .sentence-fallback { font-size: 18px; }
+  body > header .menu { font-size: 14px; }
+  body .site-header .opening-replay { font-size: 12px; }
+  body .site-header .menu-toggle { font-size: 13px; }
+  body .site-header .site-brand { width: 100px; }
+  body .site-header .opening-replay svg { width: 20px; height: 20px; }
+}
 html {
   overflow-x: clip;
   overscroll-behavior-y: none;
