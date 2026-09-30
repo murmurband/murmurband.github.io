@@ -1,6 +1,7 @@
 // Slightly reduce wheel distance without an animation queue or scroll lag.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 window.addEventListener('wheel', (event) => {
+  if (document.documentElement.classList.contains('mobile-menu-open')) return;
   if (reducedMotion.matches || event.ctrlKey || event.metaKey || event.shiftKey ||
       !event.cancelable || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return;
 

@@ -38,6 +38,7 @@ html.from-home .site-brand {
 body
   :is(
     .page-heading,
+    .events-heading,
     .story-content > h1,
     .story-content > .eyebrow,
     .record-panel,
@@ -48,6 +49,9 @@ body
 body
   :is(
     .release-grid,
+    .event-years,
+    .event-year,
+    .events-back-top,
     .story-text,
     .lyrics-content,
     .ocean-footer,

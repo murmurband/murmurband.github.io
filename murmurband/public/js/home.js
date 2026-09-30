@@ -57,6 +57,8 @@
   let sentenceIndex = 0;
   let sentenceTime = 0;
   let time = 0;
+  // The home shell appears during the fade, but the opening is still active.
+  const openingIsActive = () => document.documentElement.matches('.opening-pending, .opening-active');
   const sketch = new p5((p) => {
     p.setup = () => {
       const canvas = p.createCanvas(host.clientWidth, host.clientHeight);
@@ -86,6 +88,13 @@
           p.vertex(x, base + swell + drift + ripple);
         }
         p.endShape();
+      }
+      if (!paused) time += .009;
+      // Wait for the overlay to be fully dismissed before typing any lyrics.
+      if (openingIsActive()) {
+        sentenceIndex = 0;
+        sentenceTime = 0;
+        return;
       }
       // Type, linger, erase, then choose another of the original lyric fragments.
       const sentence = sentences[sentenceIndex];
@@ -119,7 +128,6 @@
       p.text(fragment, textX, h * (h <= 500 ? 0.75 : w < 760 ? 0.70 : 0.75));
       p.pop();
       if (!paused) {
-        time += .009;
         sentenceTime += Math.min(p.deltaTime, 100) / 1000;
         if (sentenceTime > typingDuration + holdDuration + eraseDuration + 0.8) {
           sentenceIndex = (sentenceIndex + 1 + Math.floor(Math.random() * (sentences.length - 1))) % sentences.length;
@@ -133,6 +141,13 @@
   }
   reducedMotion.addEventListener('change', (event) => { paused = event.matches; syncMotion(); });
   document.addEventListener('visibilitychange', syncMotion);
+  new MutationObserver(() => {
+    if (openingIsActive()) {
+      sentenceIndex = 0;
+      sentenceTime = 0;
+    }
+    if (paused) sketch.redraw();
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
   window.addEventListener('pointermove', (event) => {
     const rect = host.getBoundingClientRect();
     pointer = { x: event.clientX - rect.left, y: event.clientY - rect.top };

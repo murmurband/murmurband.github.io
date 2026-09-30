@@ -24,19 +24,27 @@ const path = Astro.url.pathname;
       </a>
     )
   }
-  <nav aria-label="Main navigation" lang="en">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open menu">
+    <span class="menu-label" lang="en">Menu</span>
+    <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
+  <nav id="site-navigation" aria-label="Main navigation" lang="en">
     <a
       href="/story.html"
-      aria-current={path.startsWith("/story") ? "page" : undefined}>Story</a
+      aria-current={path.startsWith("/story") ? "page" : undefined}><span class="nav-text">Story</span></a
     >
     <a
       href="/works.html"
-      aria-current={path.startsWith("/works") ? "page" : undefined}>Works</a
+      aria-current={path.startsWith("/works") ? "page" : undefined}><span class="nav-text">Works</span></a
+    >
+    <a
+      href="/events.html"
+      aria-current={path.startsWith('/events') || path.startsWith('/concert') ? 'page' : undefined}><span class="nav-text">Events</span></a
     >
     <a
       href="https://linktr.ee/murmurband_?utm_source=linktree_profile_share&ltsid=f223bfbf-0435-4904-9b14-59e297adc366"
       aria-label="Contact Murmur"
-      >Contact <span aria-hidden="true">↗</span></a
+      ><span class="nav-text">Contact <span aria-hidden="true">↗</span></span></a
     >
   </nav>
 </header>
@@ -45,6 +53,50 @@ const path = Astro.url.pathname;
 <script>
   const header = document.querySelector<HTMLElement>(".site-header");
   if (header) {
+    const toggle = header.querySelector<HTMLButtonElement>('.menu-toggle')!;
+    const navigation = header.querySelector<HTMLElement>('nav')!;
+    const label = toggle.querySelector('.menu-label')!;
+    const mobile = window.matchMedia('(max-width: 760px)');
+    const setMenu = (open: boolean) => {
+      header.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('mobile-menu-open', mobile.matches && open);
+      navigation.inert = mobile.matches && !open;
+      label.textContent = open ? 'Close' : 'Menu';
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (open) header.classList.remove('is-hidden');
+    };
+    header.classList.add('menu-ready');
+    setMenu(false);
+    toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+    header.querySelectorAll('nav a, .opening-replay').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !header.contains(event.target)) setMenu(false);
+    });
+    header.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab' && mobile.matches && toggle.getAttribute('aria-expanded') === 'true') {
+        const controls = [...header.querySelectorAll<HTMLElement>('a, button')];
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first.focus();
+        }
+      }
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+    header.addEventListener('focusout', (event) => {
+      if (!(event.relatedTarget instanceof Node) || !header.contains(event.relatedTarget)) setMenu(false);
+    });
+    mobile.addEventListener('change', () => {
+      const focusInMenu = header.querySelector('nav')?.contains(document.activeElement);
+      setMenu(false);
+      if (mobile.matches && focusInMenu) toggle.focus();
+    });
     let anchor = Math.max(0, window.scrollY);
     let scheduled = false;
     const update = () => {
@@ -56,7 +108,7 @@ const path = Astro.url.pathname;
         )
       );
       header.classList.toggle("is-scrolled", y > 16);
-      if (y <= 2 || header.contains(document.activeElement)) {
+      if (y <= 2 || header.classList.contains('menu-open') || header.contains(document.activeElement)) {
         header.classList.remove("is-hidden");
         anchor = y;
       } else if (Math.abs(y - anchor) >= (y > anchor ? 3 : 8)) {
@@ -84,6 +136,7 @@ const path = Astro.url.pathname;
 </script>
 
 <style>
+  .menu-toggle { display: none; }
   .opening-replay {
     margin-right: auto;
     flex-shrink: 0;
@@ -194,10 +247,11 @@ const path = Astro.url.pathname;
     padding: 7px 0;
     border-bottom: 1px solid transparent;
   }
-  nav a::after {
+  .nav-text { position: relative; display: inline-block; }
+  .nav-text::after {
     content: "";
     position: absolute;
-    bottom: -1px;
+    bottom: -7px;
     left: 0;
     width: 100%;
     height: 1px;
@@ -206,13 +260,13 @@ const path = Astro.url.pathname;
     transform-origin: left;
     transition: transform 250ms ease;
   }
-  nav a:hover::after,
-  nav a:focus-visible::after,
-  nav [aria-current="page"]::after {
+  nav a:hover .nav-text::after,
+  nav a:focus-visible .nav-text::after,
+  nav [aria-current="page"] .nav-text::after {
     transform: scaleX(1);
   }
   @media (prefers-reduced-motion: reduce) {
-    nav a::after,
+    .nav-text::after,
     .site-header,
     .site-header::before {
       transition: none;
@@ -246,5 +300,70 @@ const path = Astro.url.pathname;
       gap: 16px;
       letter-spacing: 0.1em;
     }
+  }
+  @media (max-width: 500px) {
+    .site-header { gap: 10px; }
+    .site-brand { width: 78px; }
+    nav, .site-header-home nav { gap: 12px; font-size: 10px; letter-spacing: .04em; }
+    .opening-replay { gap: 5px; font-size: 9px; letter-spacing: 0; }
+  }
+  @media (max-width: 760px) {
+    .menu-ready .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 10px 0 10px 10px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font: 11px 'Shippori Mincho', serif;
+      letter-spacing: .1em;
+      cursor: pointer;
+    }
+    .menu-toggle:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+    .menu-icon { position: relative; width: 24px; height: 18px; }
+    .menu-icon span { position: absolute; left: 0; top: 1px; width: 24px; height: 1px; background: currentColor; transition: transform 300ms ease, opacity 200ms ease; }
+    .menu-icon span:nth-child(2) { top: 8px; }
+    .menu-icon span:nth-child(3) { top: 15px; }
+    .menu-open .menu-icon span:first-child { transform: translateY(7px) rotate(45deg); }
+    .menu-open .menu-icon span:nth-child(2) { opacity: 0; }
+    .menu-open .menu-icon span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    :global(html.mobile-menu-open) { overflow: hidden; }
+    .menu-ready :is(.menu-toggle, .site-brand, .opening-replay) { position: relative; z-index: 2; }
+    .menu-ready nav {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: safe center;
+      text-align: center;
+      flex-wrap: nowrap;
+      gap: 0;
+      padding: 80px var(--page-gutter);
+      overflow-y: auto;
+      background: linear-gradient(145deg, #243f50, #142c3c);
+      border: 0;
+      font-size: clamp(28px, 5vw, 40px);
+      letter-spacing: .12em;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: opacity 300ms ease, transform 300ms ease, visibility 300ms;
+      /* This panel uses transitions only; page-enter runs on page content. */
+      animation: none;
+    }
+    .menu-ready nav a { flex-shrink: 0; padding: 18px 12px; line-height: 1.4; border: 0; }
+    .menu-ready nav .nav-text::after { bottom: -5px; opacity: .7; }
+    .menu-ready nav a:last-child { margin-top: 12px; padding-top: 24px; border-top: 1px solid #adc6d52b; font-size: 17px; color: var(--muted, #adc6d5); }
+    .menu-open nav { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .site-header.menu-open::before { opacity: 1; }
+    .site-header.menu-open { transform: translateY(0); }
   }
 </style>

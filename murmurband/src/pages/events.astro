@@ -1,0 +1,87 @@
+---
+import OceanLayout from "../layouts/OceanLayout.astro";
+import { events, displayDate } from "../lib/events";
+import "../styles/events.css";
+const years = [...new Set(events.map((event) => event.date.slice(0, 4)))];
+---
+
+<OceanLayout
+  title="Events · Murmur"
+  background="/7.jpg"
+  mobileBackground="/7(1).jpeg"
+>
+  <main id="page-content" tabindex="-1" class="events-page">
+    <header class="events-heading">
+      <p class="eyebrow" lang="en">Live archive · {events.length} shows</p>
+      <h1 lang="en">Events</h1>
+      <p>下一次見面會是什麼時候呢？</p>
+    </header>
+    <nav class="event-years" aria-label="演出年份">
+      {years.map((year) => <a href={`#year-${year}`}>{year}</a>)}
+    </nav>
+    {
+      years.map((year) => (
+        <section
+          class="event-year"
+          id={`year-${year}`}
+          aria-labelledby={`heading-${year}`}
+        >
+          <h2 id={`heading-${year}`}>{year}</h2>
+          <ul class="event-list" role="list">
+            {events
+              .filter((event) => event.date.startsWith(year))
+              .map((event) => (
+                <li>
+                  <div class="event-row">
+                    <time datetime={event.date}>{displayDate(event.date)}</time>
+                    <div>
+                      <h3>{event.title}</h3>
+                      <p>{event.venue}</p>
+                      <p>{event.city}</p>
+                      {event.videoUrl && (
+                        <a class="event-video" href={event.videoUrl} lang="en">
+                          Watch performance <span aria-hidden="true">↗</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        </section>
+      ))
+    }
+    {events.length === 0 && <p>演出紀錄整理中。</p>}
+    <a class="events-back-top" href="#page-content" lang="en"
+      >Back to top <span aria-hidden="true">↑</span></a
+    >
+  </main>
+</OceanLayout>
+
+<script>
+  const targets = document.querySelectorAll<HTMLElement>(
+    ".event-year > h2, .event-row"
+  );
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!motion.matches && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0, rootMargin: "0px 0px -32px 0px" }
+    );
+    targets.forEach((target) => {
+      target.classList.add("event-reveal");
+      observer.observe(target);
+    });
+    motion.addEventListener("change", () => {
+      if (!motion.matches) return;
+      observer.disconnect();
+      targets.forEach((target) => target.classList.add("is-revealed"));
+    });
+  }
+</script>
