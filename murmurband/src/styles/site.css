@@ -41,6 +41,25 @@ body :is(.home-footer, .ocean-footer) {
   body .site-header .site-brand { width: 100px; }
   body .site-header .opening-replay svg { width: 20px; height: 20px; }
 }
+@media (max-width: 400px) {
+  body :is(.home-footer, .ocean-footer) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+  }
+  body :is(.home-footer, .ocean-footer) .social-links {
+    margin-inline: 0;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+  }
+  body :is(.home-footer, .ocean-footer) > :is(a, span) {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
 html {
   overflow-x: clip;
   overscroll-behavior-y: none;

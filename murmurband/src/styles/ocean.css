@@ -197,8 +197,14 @@ img {
   gap: 12%;
   align-items: start;
 }
-.record-cover-link { display: block; }
-.record-title a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.record-cover-link {
+  display: block;
+}
+.record-title a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
 .record-panel {
   position: relative;
   min-width: 0;

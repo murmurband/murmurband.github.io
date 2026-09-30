@@ -2,7 +2,11 @@
 import OceanLayout from "../layouts/OceanLayout.astro";
 ---
 
-<OceanLayout title="Story · Murmur" background="/5.JPG" mobileBackground="/6.JPG">
+<OceanLayout
+  title="Story · Murmur"
+  background="/8.jpeg"
+  mobileBackground="/6.JPG"
+>
   <main id="page-content" tabindex="-1" class="story-page story-page-text">
     <article class="story-content">
       <p class="eyebrow" lang="en">Our story</p>
@@ -87,9 +91,10 @@ import OceanLayout from "../layouts/OceanLayout.astro";
   .story-refrain .story-slogan {
     display: block;
     width: auto;
-    max-width: 70%;
+    max-width: 80%;
     height: auto;
-    margin: 18px auto 0;
+    margin: 15px auto 0;
+    margin-bottom: 0px;
     opacity: 1;
   }
   @media (max-width: 650px) {
@@ -102,6 +107,9 @@ import OceanLayout from "../layouts/OceanLayout.astro";
     }
     .story-text .story-refrain {
       font-size: 16px;
+    }
+    .story-refrain .story-slogan {
+      max-width: 100%;
     }
     .story-content h1 {
       margin-bottom: 44px;
